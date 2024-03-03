@@ -225,6 +225,7 @@ span {
   align-items: center;
   gap: 2rem;
   background: var(--second-bg-color);
+  font-family: 'Poppins', sans-serif;
 }
 
 .about-img img {
@@ -623,6 +624,11 @@ h3 {
   clear: both;
 }
 
+
+.title{
+  font-size:30px;
+}
+
 .row {
   display:flex;
 }
@@ -630,6 +636,12 @@ h3 {
 .column {
   display:grid;
   margin: 10px;
+}
+
+.picture-box {
+  width:170px;
+  height:180px;
+  background-color:black;
 }
 
 /* ==========================================================================
