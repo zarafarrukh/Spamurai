@@ -14,7 +14,7 @@ import jakarta.ws.rs.core.Response;
 @Path("/spam")
 public class SpamResource {
 
-//    your SpamDetector Class responsible for all the SpamDetecting logic
+    //    your SpamDetector Class responsible for all the SpamDetecting logic
     SpamDetector detector = new SpamDetector();
 
 
@@ -47,7 +47,7 @@ public class SpamResource {
     @Path("/precision")
     @Produces("application/json")
     public Response getPrecision() {
-       //      TODO: return the precision of the detector, return in a Response object
+        //      TODO: return the precision of the detector, return in a Response object
 
         return null;
     }

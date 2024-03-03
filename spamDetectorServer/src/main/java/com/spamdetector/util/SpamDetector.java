@@ -47,14 +47,15 @@ public class SpamDetector {
         } catch (URISyntaxException e)
         {
             throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
     }
 
     //get words and their occurences
     //calculate frequency get that for the file path given to it
-    public Map<String, Integer> calculateFrequency(File directory)
-    {
+    public Map<String, Integer> calculateFrequency(File directory) throws IOException {
         Map<String, Integer> map = new HashMap<>();
         File[] files = directory.listFiles();
         if (files != null)
@@ -75,23 +76,21 @@ public class SpamDetector {
     }
 
     //uses buffer reader to read line by line and store words in a simple hashset and return that to  calculateFrequency function
-    public Set<String> extractWordsFromFile(File file)
-    {
-        Set<String> words = new HashSet<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(file)))
-        {
-            String line;
-            while ((line = reader.readLine()) != null)
-            {
-                String[] tokens = line.split("\\s+");
-                for (String token : tokens) {
-                    words.add(token.toLowerCase());
+    public Set<String> extractWordsFromFile(File file) throws IOException {
+        Set<String> wordsList = null;
+        if (file.exists()) {
+            BufferedReader words = new BufferedReader(new FileReader(file));
+            wordsList = new HashSet<>();
+            String line = null;
+            while ((line = words.readLine()) != null) {
+                String[] word = line.split("\\s+");
+                for (String each_word : word) {
+                    wordsList.add(each_word.toLowerCase());
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        return words;
+
+        return wordsList;
     }
 
     public static void main(String[] args)
