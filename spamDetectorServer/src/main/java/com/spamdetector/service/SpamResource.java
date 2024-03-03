@@ -5,17 +5,11 @@ import com.spamdetector.util.SpamDetector;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
-
-import java.util.logging.Logger;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import jakarta.ws.rs.core.Response;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
-
-
-import jakarta.ws.rs.core.Response;
+import java.util.logging.Logger;
 
 @Path("/spam")
 public class SpamResource {
