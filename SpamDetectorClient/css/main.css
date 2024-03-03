@@ -623,6 +623,15 @@ h3 {
   clear: both;
 }
 
+.row {
+  display:flex;
+}
+
+.column {
+  display:grid;
+  margin: 10px;
+}
+
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
