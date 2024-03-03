@@ -8,14 +8,26 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
+
+/**
+ * TODO: This class will be implemented by you
+ * You may create more methods to help you organize you strategy and make you code more readable
+ */
 public class SpamDetector {
 
     public List<TestFile> trainAndTest(File mainDirectory) {
-        // TODO: main method of loading the directories and files, training and testing the model
-        return new ArrayList<>();
+//        TODO: main method of loading the directories and files, training and testing the model
+
+           //return new ArrayList<TestFile>();
+        ArrayList<TestFile> testResults = new ArrayList<>();
+        testResults.addAll(testing(new File(mainDirectory, "test/ham"), "ham"));
+        testResults.addAll(testing(new File(mainDirectory, "test/spam"), "spam"));
+
+        return testResults;
     }
 
-    public void training() {
+    public void training()
+    {
         URL directory = SpamDetector.class.getClassLoader().getResource("\\data\\test");
         if(directory == null)
         {
@@ -28,57 +40,149 @@ public class SpamDetector {
             URI uri = directory.toURI();
             File mainDirectory = new File(uri);
 
-            Map<String, Integer> spamMap = (Map<String, Integer>) calculateFrequency(mainDirectory);
-            System.out.println("Testing 1");
-            System.out.println(spamMap.get("to"));
+            File hamDirectory = new File(mainDirectory, "ham");
+            File spamDirectory = new File(mainDirectory, "spam");
+
+            Map<String, Integer> spamMap = (Map<String, Integer>) calculateFrequency(spamDirectory);
+            Map<String, Integer> hamMap = (Map<String, Integer>) calculateFrequency(hamDirectory);
+
+
             for(String key: spamMap.keySet())
             {
-                System.out.println("Testing 2");
                 System.out.println(key + " " + spamMap.get(key));
             }
-            System.out.println("Testing 3");
+
         } catch (URISyntaxException e)
         {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
-    // Calculate word frequencies from files in the given directory
+    //will test if the files are ham or spam and then return a list of the files that are ham or spam
+    public List<TestFile> testing(File folder, String category)
+    {
+        ArrayList<TestFile> testResults = new ArrayList<TestFile>();
+
+        if(!folder.exists())
+        {
+            System.err.println("Testing directory doesn't exist");
+            return testResults;
+        }
+
+        File[] files = folder.listFiles();
+        if (files != null)
+        {
+            for (File file : files)
+            {
+                if (file.isFile())
+                {
+                    try
+                    {
+                        double spamProb = calculateProbability(file);
+                        String findCategory = (spamProb > 0.5) ? "spam" : "ham";
+
+                        TestFile testingFile = new TestFile(file.getName(), findCategory, category);
+                        testResults.add(testingFile);
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return testResults;
+    }
+
+
+    //will give the probability that a file is a spam file in the testing phase
+    public double calculateProbability(File file) throws IOException
+    {
+        Set<String> words = extractWordsFromFile(file);
+        HashMap<String, Integer> spamFreqMap = new HashMap<String, Integer>();
+        HashMap<String, Integer> hamFreqMap = new HashMap<String, Integer>();
+
+        double spamProb = 0.0;
+        double hamProb = 0.0;
+
+        for (String word : words)
+        {
+
+            int spamCount = spamFreqMap.getOrDefault(word, 0);
+            int hamCount = hamFreqMap.getOrDefault(word, 0);
+
+            spamProb += Math.log((spamCount + 1.0) / (spamFreqMap.size() + 2.0));
+            hamProb += Math.log((hamCount + 1.0) / (hamFreqMap.size() + 2.0));
+
+        }
+
+        spamProb = Math.pow(Math.E, spamProb);
+        hamProb = Math.pow(Math.E, hamProb);
+
+        return spamProb / (spamProb + hamProb);
+    }
+
+    //get words and their occurrences
+    //calculate frequency get that for the file path given to it
     public Map<String, Integer> calculateFrequency(File directory) throws IOException {
-        Map<String, Integer> wordFrequencyMap = new HashMap<>();
+        Map<String, Integer> map = new HashMap<>();
         File[] files = directory.listFiles();
+        if (files != null)
+        {
+            for (File file : files)
+            {
+                if(file.isFile())
+                {
+                    Set<String> sentence = extractWordsFromFile(file);
 
-        if (files != null) {
-            for (File file : files) {
-                if (file.isFile()) {
-                    extractWordsFromFile(file, wordFrequencyMap);
+                    for (String word : sentence)
+                    {
+                        if(isWord(word))
+                        {
+                            map.put(word, map.getOrDefault(word, 0) + 1);
+                        }
+
+                    }
                 }
             }
         }
-        return wordFrequencyMap;
+        return map;
     }
 
-    // Extract words from a file and update word frequency map
-    public void extractWordsFromFile(File file, Map<String, Integer> wordFrequencyMap) throws FileNotFoundException {
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNext()) {
-                String word = scanner.next().toLowerCase();
-                if (isWord(word)) {
-                    wordFrequencyMap.put(word, wordFrequencyMap.getOrDefault(word, 0) + 1);
+    //uses buffer reader to read line by line and store words in a simple hashset and return that to  calculateFrequency function
+    public Set<String> extractWordsFromFile(File file) throws IOException {
+        Set<String> wordsList = null;
+        if (file.exists()) {
+            BufferedReader words = new BufferedReader(new FileReader(file));
+            wordsList = new HashSet<>();
+            String line = null;
+            while ((line = words.readLine()) != null) {
+                String[] word = line.split("\\s+");
+                for (String each_word : word) {
+                    wordsList.add(each_word.toLowerCase());
                 }
             }
         }
+        return wordsList;
     }
 
-    // Check if the input string is a word and not punctuation
-    private boolean isWord(String word) {
+    // Check if the input string is a word, removes punctuation and special characters
+    private boolean isWord(String word)
+    {
         return word.matches("[a-zA-Z]+");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+
+
+        // Create an instance of SpamDetector
         SpamDetector spamDetector = new SpamDetector();
+
+        // Call the training method to demonstrate terminal output
         spamDetector.training();
     }
+
 }
