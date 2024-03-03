@@ -638,8 +638,15 @@ h3 {
 }
 
 .picture-box {
-  max-width:60%;
-  max-height:70%;
+  max-width:170px;
+  max-height:180px;
+  overflow:hidden;
+}
+
+.picture-box img{
+  width:100%;
+  height:auto;
+  display:block;
 }
 
 /* ==========================================================================
