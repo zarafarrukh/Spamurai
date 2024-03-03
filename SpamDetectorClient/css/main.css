@@ -635,13 +635,11 @@ h3 {
 
 .column {
   display:grid;
-  margin: 10px;
 }
 
 .picture-box {
-  width:170px;
-  height:180px;
-  background-color:black;
+  max-width:60%;
+  max-height:70%;
 }
 
 /* ==========================================================================
