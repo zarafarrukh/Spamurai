@@ -6,8 +6,14 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
 
 import jakarta.ws.rs.core.Response;
 
@@ -17,12 +23,16 @@ public class SpamResource {
 //    your SpamDetector Class responsible for all the SpamDetecting logic
     SpamDetector detector = new SpamDetector();
 
+    // logger to log messages
+    private static final Logger LOGGER = Logger.getLogger(SpamResource.class.getName());
+
 
     SpamResource(){
 //        TODO: load resources, train and test to improve performance on the endpoint calls
-        System.out.print("Training and testing the model, please wait");
+        LOGGER.info("Training and testing the model, please wait");
 
 //      TODO: call  this.trainAndTest();
+        this.trainAndTest();
 
 
     }
