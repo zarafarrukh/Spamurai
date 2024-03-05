@@ -225,6 +225,7 @@ span {
   align-items: center;
   gap: 2rem;
   background: var(--second-bg-color);
+  font-family: 'Poppins', sans-serif;
 }
 
 .about-img img {
@@ -621,6 +622,42 @@ h3 {
 
 .clearfix::after {
   clear: both;
+}
+
+.dashboard-table{
+  width: 80%;
+  height: 100%;
+  background-color: white;
+  border-radius: 15px;
+  margin-right: 100px;
+}
+
+.table-heading {
+  font-size: 16px;
+}
+
+.title{
+  font-size:30px;
+}
+
+.row {
+  display:flex;
+}
+
+.column {
+  display:grid;
+}
+
+.picture-box {
+  max-width:170px;
+  max-height:180px;
+  overflow:hidden;
+}
+
+.picture-box img{
+  width:100%;
+  height:auto;
+  display:block;
 }
 
 /* ==========================================================================
