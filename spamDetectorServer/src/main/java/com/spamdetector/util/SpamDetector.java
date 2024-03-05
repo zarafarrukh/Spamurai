@@ -15,16 +15,94 @@ import java.util.*;
  */
 public class SpamDetector {
 
+    //making a testresult variable to store all the testresults in
+    private ArrayList<TestFile> testResults;
+    double accuracy, precision; // optimising, declaring with getters instead of own methods with duplicate code
+    String category, findCategory;
+
+
+    public ArrayList<TestFile> getTestResults() {
+        return testResults;
+    }
+    public double getAccuracy() {
+        return accuracy;
+    }
+    public double getPrecision() {
+        return precision;
+    }
+
+    public String getActualCategory()
+    {
+        return category;
+    }
+
+    public String getFindingCategory()
+    {
+        return findCategory;
+    }
+
     public List<TestFile> trainAndTest(File mainDirectory) {
 //        TODO: main method of loading the directories and files, training and testing the model
 
-           //return new ArrayList<TestFile>();
+        //return new ArrayList<TestFile>();
         ArrayList<TestFile> testResults = new ArrayList<>();
         testResults.addAll(testing(new File(mainDirectory, "test/ham"), "ham"));
         testResults.addAll(testing(new File(mainDirectory, "test/spam"), "spam"));
 
+
+        //initialize all to zero
+        int spamPredCorr = 0;
+        int hamPredCorr = 0;
+        int spamPredIncorr = 0;
+        int hamPredIncorr = 0;
+
+        //iterate through the testResults to calculate the above
+        for (TestFile testFile : testResults)
+        {
+            if (getActualCategory().equals("spam"))
+            {
+                if (getFindingCategory().equals("spam"))
+                {
+                    spamPredCorr++;
+                }
+                else
+                {
+                    hamPredIncorr++;
+                }
+            }
+            else
+            {
+                if (getFindingCategory().equals("spam"))
+                {
+                    spamPredIncorr++;
+                }
+                else
+                {
+                    hamPredCorr++;
+                }
+            }
+        }
+
+        //calculate the precision and accuracy using these forumlas
+        double accuracy = (double) (spamPredCorr + hamPredCorr) / (spamPredCorr + hamPredCorr + spamPredIncorr + hamPredIncorr);
+        double precision = (double) spamPredCorr / (spamPredCorr + spamPredIncorr);
+
+        //output the precision and accuracy calculations
+        System.out.println("Accuracy: " + accuracy);
+        System.out.println("Precision: " + precision);
+
         return testResults;
     }
+
+//    private double calculateAccuracy(int spamPredCorr, int hamPredCorr, int spamPredIncorr, int hamPredIncorr)
+//    {
+//        return (double) (spamPredCorr + hamPredCorr) / (spamPredCorr + hamPredCorr + spamPredIncorr + hamPredIncorr);
+//    }
+//
+//    private double calculatePrecision(int spamPredCorr, int spamPredIncorr)
+//    {
+//        return (double) spamPredCorr / (spamPredCorr + spamPredIncorr);
+//    }
 
     //tests the program with spam and ham data
     public void training()
@@ -83,7 +161,7 @@ public class SpamDetector {
                     try
                     {
                         double spamProb = calculateProbability(file);
-                        String findCategory = (spamProb > 0.5) ? "spam" : "ham";
+                        findCategory = (spamProb > 0.5) ? "spam" : "ham";
 
                         TestFile testingFile = new TestFile(file.getName(), findCategory, category);
                         testResults.add(testingFile);

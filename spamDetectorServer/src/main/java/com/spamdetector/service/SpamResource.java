@@ -8,6 +8,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Response;
 
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -21,7 +24,7 @@ public class SpamResource {
     private static final Logger LOGGER = Logger.getLogger(SpamResource.class.getName());
 
 
-    SpamResource(){
+    SpamResource() throws URISyntaxException {
 //        TODO: load resources, train and test to improve performance on the endpoint calls
         LOGGER.info("Training and testing the model, please wait");
 
@@ -32,19 +35,25 @@ public class SpamResource {
     }
     @GET
     @Produces("application/json")
-    public Response getSpamResults() {
+    public Response getSpamResults() throws URISyntaxException
+    {
 //       TODO: return the test results list of TestFile, return in a Response object
 
-        return null;
+        List<TestFile> results = detector.getTestResults();
+
+        return Response.ok(results).build();
+
     }
 
     @GET
     @Path("/accuracy")
     @Produces("application/json")
-    public Response getAccuracy() {
+    public Response getAccuracy()
+    {
 //      TODO: return the accuracy of the detector, return in a Response object
+        double accuracy = detector.getAccuracy();
+        return Response.ok(accuracy).build();
 
-        return null;
     }
 
     @GET
@@ -52,17 +61,22 @@ public class SpamResource {
     @Produces("application/json")
     public Response getPrecision() {
         //      TODO: return the precision of the detector, return in a Response object
+        double precision = detector.getPrecision();
+        return Response.ok(precision).build();
 
-        return null;
     }
 
-    private List<TestFile> trainAndTest()  {
+    private List<TestFile> trainAndTest() throws URISyntaxException {
         if (this.detector==null){
             this.detector = new SpamDetector();
         }
 
 //        TODO: load the main directory "data" here from the Resources folder
-        File mainDirectory = null;
+        //getting mainDirectory to pass a a parameter
+//        URL directory = SpamDetector.class.getClassLoader().getResource("/data").getFile();
+//        URI uri = directory.toURI();
+//        File mainDirectory = new File(uri);
+        File mainDirectory = new File("SpamDetector.class.getClassLoader().getResource(\"/data\").getFile()");
         return this.detector.trainAndTest(mainDirectory);
     }
 }
