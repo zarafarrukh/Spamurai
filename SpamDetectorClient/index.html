@@ -18,43 +18,63 @@
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
   <meta name="theme-color" content="#fafafa">
 
 </head>
 
-  <h1>Spam Detection Results</h1>
+<div class = "background">
+  <div class = "row">
+    <div id="mySidenav" class="custom-sidebar">
+      <div class = "custom-logo"></div>
+      <ul class = "custom-menu">
+        <li class = "custom-active">
+          <a href="#" >
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+        </li>
 
-<div class = "row">
-  <table class = "dashboard-table">
-    <tr class = "table-row">
-      <th class = "table-heading">File name</th>
-      <th class = "table-heading">Spam Probability (%) </th>
-      <th class = "table-heading">Class</th>
-      <th class = "table-heading">File size </th>
-    </tr>
-    <tbody>
-    <!-- ADD javascript here -->
-    </tbody>
-  </table>
-<body>
+        <li>
+          <a href="#">
+            <i class="fas fa-solid fa-address-card"></i>
+            <span>About</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fas fa-user"></i>
+            <span>Team</span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-<div id = "summary-stats">
-  <h2>Performance of the model </h2>
-  <p>Accuracy: <span id = "accuracy"></span></p>
-  <p>Precision: <span id = "precision"></span></p>
-</div>
+    <div class = "dashboard-title-container">
+      <div class = "dashboard-row">
+      <div class="dashboard-title">
+        <h2>Primary</h2>
+        <h1>Dashboard</h1>
+      </div>
+
+      <div class = "search-container">
+        <h2>Search...</h2>
+      </div>
+      </div>
+    </div>
+
+  <div>
+
   </div>
+
+  </div>
+</div>
+
   <!-- Add your site or application content here -->
-
-
-
-
-
-
+  <script src="js/main.js"></script>
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
