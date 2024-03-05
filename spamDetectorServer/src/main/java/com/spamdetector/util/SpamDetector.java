@@ -84,8 +84,8 @@ public class SpamDetector {
         }
 
         //calculate the precision and accuracy using these forumlas
-        double accuracy = (double) (spamPredCorr + hamPredCorr) / (spamPredCorr + hamPredCorr + spamPredIncorr + hamPredIncorr);
-        double precision = (double) spamPredCorr / (spamPredCorr + spamPredIncorr);
+        accuracy = (double) (spamPredCorr + hamPredCorr) / (spamPredCorr + hamPredCorr + spamPredIncorr + hamPredIncorr);
+        precision = (double) spamPredCorr / (spamPredCorr + spamPredIncorr);
 
         //output the precision and accuracy calculations
         System.out.println("Accuracy: " + accuracy);
@@ -306,15 +306,19 @@ public class SpamDetector {
     }
 
 
-    public static void main(String[] args)
-    {
-
-
+    public static void main(String[] args) throws URISyntaxException {
         // Create an instance of SpamDetector
         SpamDetector spamDetector = new SpamDetector();
 
         // Call the training method to demonstrate terminal output
         spamDetector.training();
+
+        URL directoryPath = SpamDetector.class.getClassLoader().getResource("\\data\\test\\spam");
+        URI uri = directoryPath.toURI();
+
+        File mainDirectory = new File(uri);
+
+        spamDetector.trainAndTest(mainDirectory);
     }
 
 }
