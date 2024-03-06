@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Includes the actual or real class and the predicted class according to the classifier
  * @author CSCI2020U *
  */
+
 public class TestFile {
     /**
      * the name of the file this class represents
