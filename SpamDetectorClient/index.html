@@ -18,43 +18,105 @@
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
   <meta name="theme-color" content="#fafafa">
 
 </head>
 
-  <h1>Spam Detection Results</h1>
+  <div class = "row">
+    <div id="mySidenav" class="custom-sidebar">
+      <div class = "custom-logo"></div>
+      <ul class = "custom-menu">
+        <li class = "custom-active">
+          <a href="index.html" >
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+        </li>
 
-<div class = "row">
-  <table class = "dashboard-table">
-    <tr class = "table-row">
-      <th class = "table-heading">File name</th>
-      <th class = "table-heading">Spam Probability (%) </th>
-      <th class = "table-heading">Class</th>
-      <th class = "table-heading">File size </th>
-    </tr>
-    <tbody>
-    <!-- ADD javascript here -->
-    </tbody>
-  </table>
-<body>
+        <li>
+          <a href="about.html">
+            <i class="fas fa-solid fa-address-card"></i>
+            <span>About</span>
+          </a>
+        </li>
 
-<div id = "summary-stats">
-  <h2>Performance of the model </h2>
-  <p>Accuracy: <span id = "accuracy"></span></p>
-  <p>Precision: <span id = "precision"></span></p>
-</div>
+      </ul>
+    </div>
+
+    <div class = "grid">
+    <div class = "dashboard-title-container">
+      <div class = "dashboard-row">
+      <div class="dashboard-title">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3 class="animate-character">Spam Detector Dashboard</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class = "search-container">
+        <i class = "fa solid fa-search"></i>
+        <label>
+          <input class = "search-text" type = "text" placeholder = "Search"/>
+        </label>
+      </div>
+      </div>
+    </div>
+
+      <div class = "performance-container">
+        <div class = "performance-title"><h2>Performance of the Model</h2></div>
+
+        <div class = "row">
+          <div class = "grid">
+        <label>
+          <input class = "accuracy-text" type = "text" placeholder = "Accuracy:"/>
+          <span class="accuracy-value">0.45</span>
+        </label>
+          </div>
+          <div class = "grid">
+        <label>
+          <input class = "precision-text" type = "text" placeholder = "Precision:"/>
+          <span class="precision-value">0.23444</span>
+        </label>
+          </div>
+
+        </div>
+      </div>
+
+  <div class = "table-container" >
+    <h3 class = "table-title"></h3>
+    <div class = "table-data">
+      <div class="table-heading"><h2>Spam Detection Data</h2></div>
+      <table>
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Spam Probability</th>
+            <th>Class</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Data 1</td>
+          <td>Data 2</td>
+          <td>Data 3</td>
+        </tr>
+        </tbody>
+      </table>
   </div>
-  <!-- Add your site or application content here -->
+    </div>
 
+  </div>
+  </div>
 
-
-
-
-
+  <!--application content here -->
+  <script src="js/main.js"></script>
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
@@ -62,6 +124,5 @@
     ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
   </script>
   <script src="https://www.google-analytics.com/analytics.js" async></script>
-</body>
 
 </html>
