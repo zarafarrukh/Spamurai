@@ -235,11 +235,11 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
   font-family: 'Poppins', sans-serif;
   background-color: var(--bg-color);
   min-height: 100vh; /* Ensure it covers at least the full viewport height */
-  min-width: 215vh; /* Ensure it covers at least the full viewport height */
+  min-width: 210vh; /* Ensure it covers at least the full viewport height */
 }
 
 .about img {
@@ -254,20 +254,20 @@ span {
 }
 
 .about h2 {
-  font-size: 3rem;
-  line-height: 0.1;
+  font-size: 1.8rem;
+  line-height: 0.7;
   text-align: center;
 }
 
 .about h3 {
   color: rgba(30, 60, 140, 1);
-  font-size: 4rem;
+  font-size: 2rem;
   text-align: center;
 }
 
 .about p {
-  font-size: 3rem;
-  margin: 3rem 1.5rem 2rem;
+  font-size: 1.4rem;
+  margin: 1.5rem 0 3rem;
   text-align: center;
 }
 
@@ -313,7 +313,7 @@ span {
   overflow: hidden;
 }
 .typing-container {
-  width: 64ch; /* Set a fixed width for the container */
+  width: 50ch; /* Set a fixed width for the container */
   overflow: hidden;
 }
 
@@ -324,7 +324,7 @@ span {
   overflow: hidden;
   border-right: 3px solid;
   font-family: monospace;
-  font-size: 6em;
+  font-size: 4em;
   color: rgba(30, 60, 140, 1);
 }
 
@@ -570,6 +570,7 @@ h3 {
 
   .about {
     flex-direction: column-reverse;
+    display: flex;
   }
 
   .about img {
@@ -805,7 +806,7 @@ body {
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 5px;
+  margin: 1px;
 }
 
 /* ******* SEARCH ********* */
@@ -993,10 +994,11 @@ tfoot td{
 }
 
 .picture-box {
-  max-width:230px;
-  max-height:250px;
+  max-width:150px;
+  max-height:160px;
   overflow:hidden;
-  margin-left: 65px;
+  margin-left: 15px;
+  display: flex;
 }
 
 .picture-box img{
