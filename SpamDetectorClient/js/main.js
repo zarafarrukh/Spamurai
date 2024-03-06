@@ -17,22 +17,23 @@ window.onload = function() {
       .then(jsonData => {
 
         let table = document.getElementById('chart');
-
-        // Loop through each object in the array and insert its properties into a new table row
+  
+        // Loop through every object in array inserting properties into a new table row
         jsonData.forEach(obj => {
           let row = table.insertRow();
           let filenameCell = row.insertCell();
-          let spamProbabilityCell = row.insertCell();
+          let spamProbCell = row.insertCell();
           let actualClassCell = row.insertCell();
 
           filenameCell.innerHTML = obj.filename;
-          spamProbabilityCell.innerHTML = obj.spamProbability;
+          spamProbCell.innerHTML = obj.spamProb;
           actualClassCell.innerHTML = obj.actualClass;
         });
       });
   }
 
-  /*==================== toggle icon navbar ====================*/
+  
+  /*toggle icon navbar*/
   let menuIcon = document.querySelector('#menu-icon');
   let navbar = document.querySelector('.navbar');
 
@@ -42,9 +43,18 @@ window.onload = function() {
   };
 
 
+
   /*==================== scroll sections active link ====================*/
   let sections = document.querySelectorAll('section');
   let navLinks = document.querySelectorAll('header nav a');
+
+
+  
+  
+  /*scroll sections  */
+  let sections = document.querySelectorAll('section');
+  let naviLinks = document.querySelectorAll('header nav a');
+  
 
   window.onscroll = () => {
     sections.forEach(sec => {
@@ -54,24 +64,29 @@ window.onload = function() {
       let id = sec.getAttribute('id');
 
       if(top >= offset && top < offset + height) {
-        navLinks.forEach(links => {
+        naviLinks.forEach(links => {
           links.classList.remove('active');
-          document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+          document.querySelector('header nav ahref*=' + id + ']').classList.add('active');
         });
       };
     });
-    /*==================== sticky navbar ====================*/
+    /*sticky navbar */
     let header = document.querySelector('header');
 
     header.classList.toggle('sticky', window.scrollY > 100);
+<
 
-    /*==================== remove toggle icon and navbar when click navbar link (scroll) ====================*/
+ 
+  /*==================== scroll reveal ====================*/
+  
+    /* remove toggle icon and navbar on navbar link click */
     menuIcon.classList.remove('bx-x');
     navbar.classList.remove('active');
   };
+  
+  
+  /*scrollreveal*/
 
-
-  /*==================== scroll reveal ====================*/
   ScrollReveal({
     // reset: true,
     distance: '80px',
@@ -84,8 +99,9 @@ window.onload = function() {
   ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
   ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 
+  
+  /* typed js */
 
-  /*==================== typed js ====================*/
   const typed = new Typed('.multiple-text', {
     strings: ['Zara Farrukh', 'Manal Afzal', 'Syeda Bisha Fatima', 'Rabia Chattha'],
     typeSpeed: 100,

@@ -15,12 +15,96 @@ import java.util.*;
  */
 public class SpamDetector {
 
+    //making a testresult variable to store all the testresults in
+    private ArrayList<TestFile> testResults;
+    double accuracy, precision; // optimising, declaring with getters instead of own methods with duplicate code
+    String category, findCategory;
+
+
+    public ArrayList<TestFile> getTestResults() {
+        return testResults;
+    }
+    public double getAccuracy() {
+        return accuracy;
+    }
+    public double getPrecision() {
+        return precision;
+    }
+
+    public String getActualCategory()
+    {
+        return category;
+    }
+
+    public String getFindingCategory()
+    {
+        return findCategory;
+    }
+
     public List<TestFile> trainAndTest(File mainDirectory) {
 //        TODO: main method of loading the directories and files, training and testing the model
 
-        return new ArrayList<TestFile>();
+        //return new ArrayList<TestFile>();
+        ArrayList<TestFile> testResults = new ArrayList<>();
+        testResults.addAll(testing(new File(mainDirectory, "test/ham"), "ham"));
+        testResults.addAll(testing(new File(mainDirectory, "test/spam"), "spam"));
+
+
+        //initialize all to zero
+        int spamPredCorr = 0;
+        int hamPredCorr = 0;
+        int spamPredIncorr = 0;
+        int hamPredIncorr = 0;
+
+        //iterate through the testResults to calculate the above
+        for (TestFile testFile : testResults)
+        {
+            if (getActualCategory().equals("spam"))
+            {
+                if (getFindingCategory().equals("spam"))
+                {
+                    spamPredCorr++;
+                }
+                else
+                {
+                    hamPredIncorr++;
+                }
+            }
+            else
+            {
+                if (getFindingCategory().equals("spam"))
+                {
+                    spamPredIncorr++;
+                }
+                else
+                {
+                    hamPredCorr++;
+                }
+            }
+        }
+
+        //calculate the precision and accuracy using these forumlas
+        accuracy = (double) (spamPredCorr + hamPredCorr) / (spamPredCorr + hamPredCorr + spamPredIncorr + hamPredIncorr);
+        precision = (double) spamPredCorr / (spamPredCorr + spamPredIncorr);
+
+        //output the precision and accuracy calculations
+        System.out.println("Accuracy: " + accuracy);
+        System.out.println("Precision: " + precision);
+
+        return testResults;
     }
 
+//    private double calculateAccuracy(int spamPredCorr, int hamPredCorr, int spamPredIncorr, int hamPredIncorr)
+//    {
+//        return (double) (spamPredCorr + hamPredCorr) / (spamPredCorr + hamPredCorr + spamPredIncorr + hamPredIncorr);
+//    }
+//
+//    private double calculatePrecision(int spamPredCorr, int spamPredIncorr)
+//    {
+//        return (double) spamPredCorr / (spamPredCorr + spamPredIncorr);
+//    }
+
+    //tests the program with spam and ham data
     public void training()
     {
         URL directory = SpamDetector.class.getClassLoader().getResource("\\data\\test");
@@ -35,26 +119,65 @@ public class SpamDetector {
             URI uri = directory.toURI();
             File mainDirectory = new File(uri);
 
-            Map<String, Integer> spamMap = (Map<String, Integer>) calculateFrequency(mainDirectory);
-            System.out.println("Testing 1");
-            System.out.println(spamMap.get("to"));
+            File hamDirectory = new File(mainDirectory, "ham");
+            File spamDirectory = new File(mainDirectory, "spam");
+
+            Map<String, Integer> spamMap = (Map<String, Integer>) calculateFrequency(spamDirectory);
+            Map<String, Integer> hamMap = (Map<String, Integer>) calculateFrequency(hamDirectory);
+
+
             for(String key: spamMap.keySet())
             {
-                System.out.println("Testing 2");
                 System.out.println(key + " " + spamMap.get(key));
             }
-            System.out.println("Testing 3");
+
         } catch (URISyntaxException e)
         {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    //get words and their occurences
-    //calculate frequency get that for the file path given to it
-    public Map<String, Integer> calculateFrequency(File directory)
+    //will test if the files are ham or spam and then return a list of the files that are ham or spam
+    public List<TestFile> testing(File folder, String category)
     {
+        ArrayList<TestFile> testResults = new ArrayList<TestFile>();
+
+        if(!folder.exists())
+        {
+            System.err.println("Testing directory doesn't exist");
+            return testResults;
+        }
+
+        File[] files = folder.listFiles();
+        if (files != null)
+        {
+            for (File file : files)
+            {
+                if (file.isFile())
+                {
+                    try
+                    {
+                        double spamProb = calculateProbability(file);
+                        findCategory = (spamProb > 0.5) ? "spam" : "ham";
+
+                        TestFile testingFile = new TestFile(file.getName(), findCategory, category);
+                        testResults.add(testingFile);
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return testResults;
+    }
+
+    //get words and their occurrences
+    //calculate frequency get that for the file path given to it
+    public Map<String, Integer> calculateFrequency(File directory) throws IOException {
         Map<String, Integer> map = new HashMap<>();
         File[] files = directory.listFiles();
         if (files != null)
@@ -65,8 +188,13 @@ public class SpamDetector {
                 {
                     Set<String> sentence = extractWordsFromFile(file);
 
-                    for (String word : sentence) {
-                        map.put(word, map.getOrDefault(word, 0) + 1);
+                    for (String word : sentence)
+                    {
+                        if(isWord(word))
+                        {
+                            map.put(word, map.getOrDefault(word, 0) + 1);
+                        }
+
                     }
                 }
             }
@@ -75,34 +203,122 @@ public class SpamDetector {
     }
 
     //uses buffer reader to read line by line and store words in a simple hashset and return that to  calculateFrequency function
-    public Set<String> extractWordsFromFile(File file)
-    {
-        Set<String> words = new HashSet<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(file)))
-        {
-            String line;
-            while ((line = reader.readLine()) != null)
-            {
-                String[] tokens = line.split("\\s+");
-                for (String token : tokens) {
-                    words.add(token.toLowerCase());
+    public Set<String> extractWordsFromFile(File file) throws IOException {
+        Set<String> wordsList = null;
+        if (file.exists()) {
+            BufferedReader words = new BufferedReader(new FileReader(file));
+            wordsList = new HashSet<>();
+            String line = null;
+            while ((line = words.readLine()) != null) {
+                String[] word = line.split("\\s+");
+                for (String each_word : word) {
+                    wordsList.add(each_word.toLowerCase());
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        return words;
+        return wordsList;
     }
 
-    public static void main(String[] args)
+    // Check if the input string is a word, removes punctuation and special characters
+    private boolean isWord(String word)
     {
+        return word.matches("[a-zA-Z]+");
+    }
+
+    //***************************Training Spam and Ham******************************************************************
+    //trains spam data by reading from spam files and recording word frequency
+    public void trainSpam(File file, HashMap<String, Integer> SpamMap)
+    {
+        try {
+            Set<String> uniqueWords = new HashSet<>();
+            Scanner scanner = new Scanner(file); //switched over from buffered reader for variety and ease of use as Scanner is better
+
+            while (scanner.hasNext()) {
+                String word = scanner.next().toLowerCase();
+
+                if (isWord(word))
+                {
+                    if (!uniqueWords.contains(word))
+                    {
+                        uniqueWords.add(word);
+                        SpamMap.put(word, SpamMap.getOrDefault(word, 0) + 1);
+                    }
+                }
+            }
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 
 
+    public void trainHam(File file, HashMap<String, Integer> HamMap)
+    {
+        try {
+            Set<String> uniqueWords = new HashSet<>();
+            Scanner scanner = new Scanner(file); //switched over from buffered reader for variety and ease of use as Scanner is better
+
+            while (scanner.hasNext()) {
+                String word = scanner.next().toLowerCase();
+
+                if (isWord(word))
+                {
+                    if (!uniqueWords.contains(word))
+                    {
+                        uniqueWords.add(word);
+                        HamMap.put(word, HamMap.getOrDefault(word, 0) + 1);
+                    }
+                }
+            }
+        } catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    //*********************************Probabilities******************************************************************
+    //will give the probability that a file is a spam file in the testing phase
+    public double calculateProbability(File file) throws IOException
+    {
+        Set<String> words = extractWordsFromFile(file);
+        HashMap<String, Integer> spamFreqMap = new HashMap<String, Integer>();
+        HashMap<String, Integer> hamFreqMap = new HashMap<String, Integer>();
+
+        double spamProb = 0.0;
+        double hamProb = 0.0;
+
+        for (String word : words)
+        {
+
+            int spamCount = spamFreqMap.getOrDefault(word, 0);
+            int hamCount = hamFreqMap.getOrDefault(word, 0);
+
+            spamProb += Math.log((spamCount + 1.0) / (spamFreqMap.size() + 2.0));
+            hamProb += Math.log((hamCount + 1.0) / (hamFreqMap.size() + 2.0));
+
+        }
+
+        spamProb = Math.pow(Math.E, spamProb);
+        hamProb = Math.pow(Math.E, hamProb);
+
+        return spamProb / (spamProb + hamProb);
+    }
+
+
+    public static void main(String[] args) throws URISyntaxException {
         // Create an instance of SpamDetector
         SpamDetector spamDetector = new SpamDetector();
 
         // Call the training method to demonstrate terminal output
         spamDetector.training();
+
+        URL directoryPath = SpamDetector.class.getClassLoader().getResource("\\data\\test\\spam");
+        URI uri = directoryPath.toURI();
+
+        File mainDirectory = new File(uri);
+
+        spamDetector.trainAndTest(mainDirectory);
     }
 
 }

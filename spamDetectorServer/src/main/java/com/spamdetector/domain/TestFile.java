@@ -1,6 +1,5 @@
 package com.spamdetector.domain;
 
-import java.text.DecimalFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -27,9 +26,9 @@ public class TestFile {
     @JsonProperty("actualClass")
     private String actualClass;
 
-    public TestFile(String filename, double spamProbability, String actualClass) {
+    public TestFile(String filename, String spamProbability, String actualClass) {
         this.filename = filename;
-        this.spamProbability = spamProbability;
+        this.spamProbability = Double.parseDouble(spamProbability);
         this.actualClass = actualClass;
     }
 
