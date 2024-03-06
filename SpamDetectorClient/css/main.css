@@ -287,12 +287,9 @@ span {
     #456ac2 67%,
     #2a53b0 100%
   );
-  background-size: auto auto;
-  background-clip: border-box;
   background-size: 200% auto;
   color: #fff;
   background-clip: text;
-  text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textclip 5s ease-in-out infinite;
