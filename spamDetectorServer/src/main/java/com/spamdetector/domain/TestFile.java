@@ -26,9 +26,9 @@ public class TestFile {
     @JsonProperty("actualClass")
     private String actualClass;
 
-    public TestFile(String filename, String spamProbability, String actualClass) {
+    public TestFile(String filename, double spamProbability, String actualClass) {
         this.filename = filename;
-        this.spamProbability = Double.parseDouble(spamProbability);
+        this.spamProbability = spamProbability;
         this.actualClass = actualClass;
     }
 
@@ -50,4 +50,5 @@ public class TestFile {
     public void setFilename(String value) { this.filename = value; }
     public void setSpamProbability(double value) { this.spamProbability = value; }
     public void setActualClass(String value) { this.actualClass = value; }
+
 }
