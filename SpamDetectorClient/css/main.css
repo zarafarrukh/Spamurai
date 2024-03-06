@@ -255,7 +255,7 @@ span {
 
 .about h2 {
   font-size: 3rem;
-  line-height: 0.2;
+  line-height: 0.1;
   text-align: center;
 }
 
@@ -996,6 +996,7 @@ tfoot td{
   max-width:230px;
   max-height:250px;
   overflow:hidden;
+  margin-left: 65px;
 }
 
 .picture-box img{
