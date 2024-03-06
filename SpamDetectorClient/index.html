@@ -24,33 +24,28 @@
 
 </head>
 
-<div class = "background">
   <div class = "row">
     <div id="mySidenav" class="custom-sidebar">
       <div class = "custom-logo"></div>
       <ul class = "custom-menu">
         <li class = "custom-active">
-          <a href="#" >
+          <a href="index.html" >
             <i class="fas fa-home"></i>
             <span>Home</span>
           </a>
         </li>
 
         <li>
-          <a href="#">
+          <a href="about.html">
             <i class="fas fa-solid fa-address-card"></i>
             <span>About</span>
           </a>
         </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-user"></i>
-            <span>Team</span>
-          </a>
-        </li>
+
       </ul>
     </div>
 
+    <div class = "grid">
     <div class = "dashboard-title-container">
       <div class = "dashboard-row">
       <div class="dashboard-title">
@@ -59,17 +54,39 @@
       </div>
 
       <div class = "search-container">
-        <h2>Search...</h2>
+        <i class = "fa solid fa-search"></i>
+        <label>
+          <input class = "search-text" type = "text" placeholder = "Search"/>
+        </label>
       </div>
       </div>
     </div>
 
-  <div>
+  <div class = "table-container" >
+    <h3 class = "table-title"></h3>
+    <div class = "table-data">
+      <div class="table-heading"><h2>Spam Detection Data</h2></div>
+      <table>
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Spam Probability</th>
+            <th>Class</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Data 1</td>
+          <td>Data 2</td>
+          <td>Data 3</td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
+    </div>
 
   </div>
-
   </div>
-</div>
 
   <!-- Add your site or application content here -->
   <script src="js/main.js"></script>

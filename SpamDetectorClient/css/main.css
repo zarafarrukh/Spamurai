@@ -633,7 +633,7 @@ h3 {
 }
 
 body {
-  background-color:white;
+  background-color:lightgray;
 }
 
 .main-heading {
@@ -648,6 +648,14 @@ body {
   color: white;
 }
 
+.main-content-container {
+  position: relative;
+  width:100%;
+  padding:1rem;
+  display:grid;
+
+}
+
 .dashboard-table{
   width: 80%;
   height: 100%;
@@ -657,21 +665,95 @@ body {
 }
 
 .dashboard-row{
-  display:flex;
+  display: flex;
 }
 
-.search-container{
-  width:270px;
-  height:30px;
-  background-color:white;
-  border:1px solid black;
-  border-radius:15px;
-  align-items:center;
+.search-container {
+  border-radius: 15px;
+  display: flex;
+  color: rgba(113,99,186,255);
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border: 1px solid black;
+}
+
+.search-box input {
+  background: transparent;
+  padding: 10px;
+}
+
+.search-box i {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+.search-box i:hover{
+  transform: scale(1.2);
+}
+
+.table-container{
+  background:white;
+  position:relative;
+  height: 700px;
+  width: 1800px;
+  padding: 1rem;
+  border: 1px solid rgba(30, 60, 140, 1);
   gap:5px;
+  margin:10px;
+  border-radius:15px;
+
 }
 
 .table-heading {
-  font-size: 16px;
+  color:rgba(30, 60, 140, 1);
+  font-size: 12px;
+  padding-bottom:15px;
+  margin:5px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+
+}
+
+thead{
+  background:rgba(30, 60, 140, 1);
+  color:#fff;
+
+}
+
+th{
+  padding:15px;
+  text-align:left;
+  font-size:15px;
+}
+
+tbody {
+  background:#fff;
+}
+
+td{
+  padding:15px;
+  font-size:14px;
+  color:#333;
+  background-color:#D9DDDC;
+}
+
+tr:nth-child(even){
+  background:#fff;
+}
+
+tfoot{
+  background:rgba(113,99,186,255);
+  font-weight:bold;
+  color:#fff;
+}
+
+tfoot td{
+  padding:15px;
 }
 
 .title{
@@ -689,6 +771,10 @@ body {
 
 .row {
   display:flex;
+}
+
+.grid {
+  display:grid;
 }
 
 .custom-sidebar {
@@ -753,24 +839,34 @@ body {
 
 .dashboard-title-container{
   background:white;
-  border-radius:15px;
-  display:flex;
-  width: 1500px;
-  height: 100px;
-  border: 1px solid black;
+  position:relative;
+  height: 150px;
+  width: 1800px;
+  padding: 1rem;
+  border: 1px solid rgba(30, 60, 140, 1);
   gap:5px;
-  color: rgba(30, 60, 140, 1);
-  padding: 4px 12px;
-  align-items:center;
-  margin-right: 12px;
+  margin:10px;
+  border-radius:10px;
 }
 
 .dashboard-title {
-  background:transparent;
+  color: rgba(30, 60, 140, 1);
   cursor:pointer;
   padding:10px;
 }
 
+.dashboard-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  border-radius:10px;
+  padding: 10px 2rem;
+}
+
+.search-text {
+  font-size: 14px;
+}
 
 .grid{
   display:grid;
