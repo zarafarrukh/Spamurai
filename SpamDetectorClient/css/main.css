@@ -656,6 +656,8 @@ body {
 
 }
 
+/* ******* DASHBOARD ********* */
+
 .dashboard-table{
   width: 80%;
   height: 100%;
@@ -667,6 +669,73 @@ body {
 .dashboard-row{
   display: flex;
 }
+
+.dashboard-title-container{
+  background:white;
+  position:relative;
+  height: 150px;
+  width: 1800px;
+  padding: 1rem;
+  border: 1px solid rgba(30, 60, 140, 1);
+  gap:5px;
+  margin:10px;
+  border-radius:10px;
+}
+
+.dashboard-title {
+  color: rgba(30, 60, 140, 1);
+  cursor:pointer;
+  padding:10px;
+}
+
+.dashboard-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  border-radius:10px;
+  padding: 10px 2rem;
+}
+
+/* ********* PERFORMANCE ******** */
+.performance-container{
+  background:white;
+  position:relative;
+  height: 150px;
+  width: 1800px;
+  padding: 1rem;
+  border: 1px solid rgba(30, 60, 140, 1);
+  gap:5px;
+  margin:10px;
+  border-radius:10px;
+}
+
+.performance-title {
+  color:rgba(30, 60, 140, 1);
+  font-size: 12px;
+  padding-bottom:15px;
+  margin:5px;
+}
+
+.accuracy-text{
+  font-size:12px;
+  color:black;
+}
+
+.precision-text{
+  font-size:12px;
+  color:black;
+
+}
+
+.precision-value, .accuracy-value {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+/* ******* SEARCH ********* */
 
 .search-container {
   border-radius: 15px;
@@ -693,9 +762,11 @@ body {
   transform: scale(1.2);
 }
 
-.table-container{
-  background:white;
-  position:relative;
+/* ******* TABLE ********* */
+
+.table-container {
+  background: white;
+  position: relative;
   height: 700px;
   width: 1800px;
   padding: 1rem;
@@ -703,7 +774,6 @@ body {
   gap:5px;
   margin:10px;
   border-radius:15px;
-
 }
 
 .table-heading {
@@ -716,13 +786,11 @@ body {
 table{
   width:100%;
   border-collapse:collapse;
-
 }
 
 thead{
   background:rgba(30, 60, 140, 1);
   color:#fff;
-
 }
 
 th{
@@ -775,6 +843,7 @@ tfoot td{
 
 .grid {
   display:grid;
+  margin: 5px;
 }
 
 .custom-sidebar {
@@ -835,33 +904,6 @@ tfoot td{
 .custom-menu li:hover,
 .active {
   background: lightgray;
-}
-
-.dashboard-title-container{
-  background:white;
-  position:relative;
-  height: 150px;
-  width: 1800px;
-  padding: 1rem;
-  border: 1px solid rgba(30, 60, 140, 1);
-  gap:5px;
-  margin:10px;
-  border-radius:10px;
-}
-
-.dashboard-title {
-  color: rgba(30, 60, 140, 1);
-  cursor:pointer;
-  padding:10px;
-}
-
-.dashboard-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  border-radius:10px;
-  padding: 10px 2rem;
 }
 
 .search-text {
