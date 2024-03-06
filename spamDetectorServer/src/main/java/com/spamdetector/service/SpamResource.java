@@ -51,8 +51,8 @@ public class SpamResource {
     public Response getAccuracy()
     {
 //      TODO: return the accuracy of the detector, return in a Response object
-        double accuracy = detector.getAccuracy();
-        return Response.ok(accuracy).build();
+       // double accuracy = detector.getAccuracy();
+        return Response.ok().build();
 
     }
 
@@ -60,9 +60,9 @@ public class SpamResource {
     @Path("/precision")
     @Produces("application/json")
     public Response getPrecision() {
-        //      TODO: return the precision of the detector, return in a Response object
-        double precision = detector.getPrecision();
-        return Response.ok(precision).build();
+              //TODO: return the precision of the detector, return in a Response object
+        //double precision = detector.getPrecision();
+        return Response.ok().build();
 
     }
 
