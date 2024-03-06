@@ -267,7 +267,7 @@ span {
 
 .about p {
   font-size: 3rem;
-  margin: 3rem 0 2rem;
+  margin: 3rem 1.5rem 2rem;
   text-align: center;
 }
 
@@ -988,6 +988,8 @@ tfoot td{
 }
 .column {
   display:grid;
+  align-items: center;
+  justify-content: center;
 }
 
 .picture-box {
@@ -997,7 +999,7 @@ tfoot td{
 }
 
 .picture-box img{
-  width:200%;
+  width:100%;
   height:auto;
   display:block;
 }
