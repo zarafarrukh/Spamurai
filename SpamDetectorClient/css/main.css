@@ -230,17 +230,22 @@ span {
 }
 
 /*ABOUT*/
+
 .about {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  background: var(--second-bg-color);
+  gap: 3rem;
   font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  min-height: 100vh; /* Ensure it covers at least the full viewport height */
+  min-width: 215vh; /* Ensure it covers at least the full viewport height */
 }
 
-.about-img img {
+.about img {
   width: 35vw;
+  height: 35vw;
+  object-fit: cover;
 }
 
 .heading {
@@ -248,24 +253,62 @@ span {
   font-size: 4.5rem;
 }
 
-.about-content h2 {
-  text-align: left;
-  line-height: 1.2;
+.about h2 {
+  line-height: 0.2;
+  text-align: center;
 }
 
-.about-content h3 {
-  font-size: 2.6rem;
+.about h3 {
+  color: rgba(30, 60, 140, 1);
+  font-size: 2.5rem;
+  text-align: center;
 }
 
-.about-content p {
-  font-size: 1.6rem;
+.about p {
+  font-size: 1.4rem;
   margin: 2rem 0 3rem;
+  text-align: center;
 }
 
 .tableFixHead {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/*TYPING EFFECT ANIMATION*/
+.wrapper {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.typing-container {
+  width: 40ch; /* Set a fixed width for the container */
+  overflow: hidden;
+}
+
+.typing-demo {
+  width: 15ch;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 3em;
+  color: rgba(30, 60, 140, 1);
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
 
 /*PROJECT*/
