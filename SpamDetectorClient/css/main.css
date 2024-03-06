@@ -254,19 +254,20 @@ span {
 }
 
 .about h2 {
+  font-size: 3rem;
   line-height: 0.2;
   text-align: center;
 }
 
 .about h3 {
   color: rgba(30, 60, 140, 1);
-  font-size: 2.5rem;
+  font-size: 4rem;
   text-align: center;
 }
 
 .about p {
-  font-size: 1.4rem;
-  margin: 2rem 0 3rem;
+  font-size: 3rem;
+  margin: 3rem 0 2rem;
   text-align: center;
 }
 
@@ -312,7 +313,7 @@ span {
   overflow: hidden;
 }
 .typing-container {
-  width: 60ch; /* Set a fixed width for the container */
+  width: 64ch; /* Set a fixed width for the container */
   overflow: hidden;
 }
 
@@ -990,13 +991,13 @@ tfoot td{
 }
 
 .picture-box {
-  max-width:170px;
-  max-height:180px;
+  max-width:230px;
+  max-height:250px;
   overflow:hidden;
 }
 
 .picture-box img{
-  width:100%;
+  width:200%;
   height:auto;
   display:block;
 }
