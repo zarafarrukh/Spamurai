@@ -315,7 +315,7 @@ span {
   overflow: hidden;
 }
 .typing-container {
-  width: 40ch; /* Set a fixed width for the container */
+  width: 60ch; /* Set a fixed width for the container */
   overflow: hidden;
 }
 
@@ -326,7 +326,7 @@ span {
   overflow: hidden;
   border-right: 3px solid;
   font-family: monospace;
-  font-size: 3em;
+  font-size: 6em;
   color: rgba(30, 60, 140, 1);
 }
 
@@ -575,7 +575,7 @@ h3 {
   }
 
   .about img {
-    width: 70vw;
+    width: 90vw;
     margin-top: 4rem;
   }
 
