@@ -134,27 +134,24 @@ public class SpamDetector {
     //calculate frequency get that for the file path given to it, used to train
     public static Map<String, Integer> calculateFrequency(File directory, HashMap<String, Integer> map) throws IOException {
         File[] files = directory.listFiles();
-        Set<String> uniqueWords = new HashSet<>();
-
+        ArrayList<String> uniqueWords = new ArrayList<>();
         if (files != null)
         {
             for (File file : files)
             {
                 if(file.isFile())
-            {
-                ArrayList<String> sentence = extractWordsFromFile(file);
-                for (String word : sentence)
                 {
-                    if(isWord(word))
+                    ArrayList<String> sentence = extractWordsFromFile(file);
+                    for (String word : sentence)
                     {
-                        if (!uniqueWords.contains(word))
+                        if(isWord(word) && !uniqueWords.contains(word))
                         {
                             uniqueWords.add(word);
                             map.put(word, map.getOrDefault(word, 0) + 1);
                         }
                     }
                 }
-            }
+                uniqueWords.clear();
             }
         }
         return map;
