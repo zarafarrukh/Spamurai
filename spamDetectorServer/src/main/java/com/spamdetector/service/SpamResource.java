@@ -8,6 +8,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Response;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -24,7 +25,7 @@ public class SpamResource {
     private static final Logger LOGGER = Logger.getLogger(SpamResource.class.getName());
 
 
-    SpamResource() throws URISyntaxException {
+    SpamResource() throws URISyntaxException, IOException {
 //        TODO: load resources, train and test to improve performance on the endpoint calls
         LOGGER.info("Training and testing the model, please wait");
 
@@ -66,7 +67,7 @@ public class SpamResource {
 
     }
 
-    private List<TestFile> trainAndTest() throws URISyntaxException {
+    private List<TestFile> trainAndTest() throws URISyntaxException, IOException {
         if (this.detector==null){
             this.detector = new SpamDetector();
         }
