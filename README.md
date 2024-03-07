@@ -1,5 +1,4 @@
 # Spam Detector SPAMURAI - Assignment 01
-CSCI 2020U: Software Systems Development and Integration
 <p align="center">
   <img src="SpamDetectorClient/img/spamurai.png" alt="Spamurai Logo" width="300">
 </p>
