@@ -156,11 +156,8 @@ section {
   border-bottom: .1rem solid rgba(0, 0, 0, .2);
 }
 
-.logo {
-  font-size: 2.3rem;
-  color: var(--text-color);
-  font-weight: 650;
-  cursor: default;
+.logo{
+
 }
 
 .navbar a {
@@ -746,20 +743,23 @@ body {
 .dashboard-title-container{
   background:white;
   position:relative;
-  height: 150px;
-  width: 1800px;
+  height: 180px;
+  width: 100%;
   padding: 1rem;
   border: 1px solid rgba(30, 60, 140, 1);
   gap:5px;
   margin:10px;
   border-radius:10px;
+  align-items: center;
+  display: flex;
 }
 
 .dashboard-title {
   color: rgba(30, 60, 140, 1);
   cursor:pointer;
-  padding:10px;
+  padding:5px;
   font-size:15px;
+  margin-right: 70px;
 }
 
 .dashboard-row{
@@ -768,7 +768,13 @@ body {
   align-items:center;
   flex-wrap:wrap;
   border-radius:10px;
-  padding: 10px 2rem;
+  padding: 10px 6rem;
+}
+
+.dashboard-logo {
+  max-width: 230px; /* Adjust the maximum width as needed */
+  height: auto;
+  margin-right: 10px; /* Adjust the margin as needed */
 }
 
 /* ********* PERFORMANCE ******** */
@@ -819,6 +825,7 @@ body {
   gap: 5px;
   padding: 4px 12px;
   border: 1px solid black;
+  margin-top: 20px;
 }
 
 .search-box input {
@@ -939,7 +946,7 @@ tfoot td{
   transition:0.5s;
 }
 
-.custom-logo {
+.custom-navicon {
   height: 80px;
   padding: 16px;
 }
