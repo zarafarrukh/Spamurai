@@ -3,7 +3,7 @@ CSCI 2020U: Software Systems Development and Integration
 
 ## Overview
 Fed up with the incessant barrage of irritating advertisements flooding your inbox? We've taken the initiative to develop a program designed to sift through and eliminate spam emails. Our spam detector employs a unigram approach, meticulously analyzing each word within an email to ascertain its spam status. By calculating probabilities based on word frequency, the program exhibits a remarkable ability to differentiate between spam and legitimate emails, ensuring high accuracy in its assessments. The system has been trained using a diverse dataset encompassing both spam and non-spam emails, and the SpamDetector class has been crafted to facilitate model reading, testing, and training. With a robust set of samples at its disposal, the program excels at sieving out unwanted messages, enhancing overall email experiences. The algorithm boasts a % accuracy rate and a % precision rate, providing assurance that our system has your back.
-![Spamurai Logo](SpamDetectorClient/img/sPamurai.png)
+![Spamurai Logo](SpamDetectorClient/img/spamurai.png)
 
 
 ...IN CONSTRUCTION
