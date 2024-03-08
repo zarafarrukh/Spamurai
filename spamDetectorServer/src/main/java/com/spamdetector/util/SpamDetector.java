@@ -54,15 +54,19 @@ public class SpamDetector {
         testResults.addAll(testing(new File(mainDirectory, "\\test\\ham"), "ham"));
         testResults.addAll(testing(new File(mainDirectory, "\\test\\spam"), "spam"));
 
-        HashMap<String,Double> probMapSpamAndHam = new HashMap<>();
+        HashMap<String,Double> probMapSpam = new HashMap<>();
+        HashMap<String,Double> probMapHam = new HashMap<>();
         ArrayList<String> wordList = new ArrayList<>(); //to avoid looping over same words
+        ArrayList<Double> probHam = new ArrayList<Double>();
+        ArrayList<Double> probSpam = new ArrayList<Double>();
 
         //go through files and words in spam and store the word and respective probability in hashmap
         for(String word : trainSpamFreq.keySet())
         {
 
             double probability = calculateProbability(word, "spam") ;
-            probMapSpamAndHam.put(word, probability);
+            probMapSpam.put(word, probability);
+            probabilities.add(probability);
             wordList.add(word);
         }
 
@@ -71,21 +75,26 @@ public class SpamDetector {
             if(!wordList.contains(word))
             {
                 double probability = calculateProbability(word, "ham");
-                probMapSpamAndHam.put(word, probability);
+                probMapHam.put(word, probability);
+                probabilities.add(probability);
                 wordList.add(word);
             }
         }
 
-        for(String key : probMapSpamAndHam.keySet())
-        {
-              System.out.println(key + " " + probMapSpamAndHam.get(key));
+
+//
+//        for(String key : probMapSpamAndHam.keySet())
+//        {
+//              System.out.println(key + " " + probMapSpamAndHam.get(key));
+//
+//
+//        }
 
 
-        }
-
-        calculatePrecisionAndAccuracy(testResults);
 
         //TESTING HAM AND SPAM
+
+        calculatePrecisionAndAccuracy(testResults, probabilities);
 
         return testResults;
     }
@@ -110,7 +119,7 @@ public class SpamDetector {
                 {
                     double spamProb = calculateFileProbability(file, category);
                     String findCategory = (spamProb > 0.5) ? "spam" : "ham";
-                    TestFile testingFile = new TestFile(file.getName(), findCategory);
+                    TestFile testingFile = new TestFile(file, findCategory);
                     testingFile.setPredictedClass(category);
                     testResults.add(testingFile);
                 }
@@ -224,16 +233,21 @@ public class SpamDetector {
     }
 
     //this will calculate the accuracy and precision based on the predicted class and the actual class of the test files
-    public void calculatePrecisionAndAccuracy(ArrayList<TestFile> testResults) throws IOException {
+    public void calculatePrecisionAndAccuracy(ArrayList<TestFile> testResults, ArrayList<Double> prob) throws IOException {
         int truePositives = 0;
         int falsePositives = 0;
         int trueNegatives = 0;
         int falseNegatives = 0;
 
+        System.out.println(prob);
+
         for (TestFile file : testResults) {
-            double spamProbability = calculateProbability(file.getFilename(), "spam");
+            double spamProbability = totalProb(prob);
+            System.out.println("Spam Probability: " + spamProbability + "for " + file);
             String predictedClass = (spamProbability > 0.5) ? "spam" : "ham";
             file.setPredictedClass(predictedClass);
+
+
 
             if (file.getActualClass().equals("spam") && predictedClass.equals("spam"))
             {
@@ -272,9 +286,32 @@ public class SpamDetector {
             precision = 0.0;
         }
 
+        System.out.println(truePositives + " + " + trueNegatives );
+        System.out.println(truePositives + " / " + falsePositives + " + " + truePositives);
+//        setAccuracy((float)(truePositives(probSpam) + trueNegatives(probHam)) / (probHam.size() + probSpam.size()));
+//        setPrecision((double) truePositives(probSpam) / (falsePositives(probHam) + truePositives(probSpam)));
+
+
         System.out.println("Accuracy: " + accuracy);
         System.out.println("Precision: " + precision);
     }
+
+    //probability that a file is spam
+
+    public static double totalProb(ArrayList<Double> probability) {
+        double n = 0;
+
+        for (double prob : probability) {
+            if (prob == 0) {
+                prob = 0.00000000001; // Set a very small non-zero value
+            }
+            n = n + (Math.log(1 - prob) - Math.log(prob));
+        }
+
+        double total = 1 / (1 + Math.pow(Math.E, n));
+        return total;
+    }
+
 
     public static void main(String[] args) throws URISyntaxException, IOException {
         // Create an instance of SpamDetector

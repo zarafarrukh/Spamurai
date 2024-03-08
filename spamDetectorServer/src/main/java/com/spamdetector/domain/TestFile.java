@@ -2,6 +2,8 @@ package com.spamdetector.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.File;
+
 /**
  * This class represents a file from the testing data
  * Includes the actual or real class and the predicted class according to the classifier
@@ -12,7 +14,7 @@ public class TestFile {
      * the name of the file this class represents
      */
     @JsonProperty("file")
-    private String filename;
+    private File filename;
 
     /**
      * the probability of this file belonging to the 'spam' category/class
@@ -32,7 +34,7 @@ public class TestFile {
     @JsonProperty("predictedClass")
     private String predictedClass;
 
-    public TestFile(String filename, String actualClass) {
+    public TestFile(File filename, String actualClass) {
         this.filename = filename;
         this.actualClass = actualClass;
     }
@@ -40,7 +42,7 @@ public class TestFile {
     /**
      * @return the name of the file
      */
-    public String getFilename() {
+    public File getFilename() {
         return this.filename;
     }
 
@@ -74,7 +76,7 @@ public class TestFile {
     }
 
     // setter methods for filename, spamProbability, and actualClass
-    public void setFilename(String value) { this.filename = value; }
+    public void setFilename(File value) { this.filename = value; }
     public void setSpamProbability(double value) { this.spamProbability = value; }
     public void setActualClass(String value) { this.actualClass = value; }
 }
