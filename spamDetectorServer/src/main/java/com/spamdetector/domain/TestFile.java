@@ -43,7 +43,7 @@ public class TestFile {
      * @return the name of the file
      */
     public File getFilename() {
-        return new File(filename.getName());
+        return this.filename;
     }
 
     /**
@@ -79,9 +79,4 @@ public class TestFile {
     public void setFilename(File value) { this.filename = value; }
     public void setSpamProbability(double value) { this.spamProbability = value; }
     public void setActualClass(String value) { this.actualClass = value; }
-
-
-    public String getName() {
-        return this.filename.getName();
-    }
 }
