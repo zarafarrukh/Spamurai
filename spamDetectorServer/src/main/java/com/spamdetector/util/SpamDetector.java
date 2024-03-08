@@ -54,33 +54,25 @@ public class SpamDetector {
         testResults.addAll(testing(new File(mainDirectory, "\\test\\ham"), "ham"));
         testResults.addAll(testing(new File(mainDirectory, "\\test\\spam"), "spam"));
 
-        HashMap<String,Double> probMapSpamAndHam = new HashMap<>();
-        ArrayList<String> wordList = new ArrayList<>(); //to avoid looping over same words
+        HashMap<String,Double> probMapSpam = new HashMap<>();
+        HashMap<String,Double> probMapHam = new HashMap<>();
 
         //go through files and words in spam and store the word and respective probability in hashmap
         for(String word : trainSpamFreq.keySet())
         {
-
             double probability = calculateProbability(word, "spam") ;
-            probMapSpamAndHam.put(word, probability);
-            wordList.add(word);
+            probMapSpam.put(word, probability);
         }
 
         for(String word : trainHamFreq.keySet())
         {
-            if(!wordList.contains(word))
-            {
-                double probability = calculateProbability(word, "ham");
-                probMapSpamAndHam.put(word, probability);
-                wordList.add(word);
-            }
+            double probability = calculateProbability(word, "ham") ;
+            probMapHam.put(word, probability);
         }
 
-        for(String key : probMapSpamAndHam.keySet())
+        for(String key : probMapSpam.keySet())
         {
-              System.out.println(key + " " + probMapSpamAndHam.get(key));
-
-
+            System.out.println(key + " " + probMapSpam.get(key));
         }
 
         calculatePrecisionAndAccuracy(testResults);
@@ -108,11 +100,9 @@ public class SpamDetector {
             {
                 if (file.isFile())
                 {
-                    double spamProb = calculateFileProbability(file, category);
-                    String findCategory = (spamProb > 0.5) ? "spam" : "ham";
-                    TestFile testingFile = new TestFile(file.getName(), findCategory);
-                    testingFile.setPredictedClass(category);
-                    testResults.add(testingFile);
+                    TestFile testFile = new TestFile(file, category);
+                    testFile.setActualClass(category);
+                    testResults.add(testFile);
                 }
             }
         }
@@ -174,30 +164,6 @@ public class SpamDetector {
 
     //*********************************Probabilities******************************************************************
 
-    //this function will give the probability that a file is spam or ham based on the occurrence of words in the file
-    public double calculateFileProbability(File file, String category) throws IOException
-    {
-        double logSpam = 0.0;
-        double logHam = 0.0;
-        List<String> words = extractWordsFromFile(file);
-
-        for (String word : words)
-        {
-            double probability = calculateProbability(word, category);
-
-            if (category.equals("spam"))
-            {
-                logSpam += Math.log(probability);
-            }
-            else
-            {
-                logHam += Math.log(probability);
-            }
-        }
-
-        return (double) 1.0 / (1.0 + Math.exp(logHam - logSpam));
-    }
-
     //will give the probability that a file is a spam file in the testing phase
     public double calculateProbability(String word, String category) throws IOException
     {
@@ -231,7 +197,7 @@ public class SpamDetector {
         int falseNegatives = 0;
 
         for (TestFile file : testResults) {
-            double spamProbability = calculateProbability(file.getFilename(), "spam");
+            double spamProbability = calculateProbability(file.getName(), "spam");
             String predictedClass = (spamProbability > 0.5) ? "spam" : "ham";
             file.setPredictedClass(predictedClass);
 
