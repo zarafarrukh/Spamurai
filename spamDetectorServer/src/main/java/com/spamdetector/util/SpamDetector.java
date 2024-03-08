@@ -75,6 +75,8 @@ public class SpamDetector {
             System.out.println(key + " " + probMapSpam.get(key));
         }
 
+        calculatePrecisionAndAccuracy(testResults);
+
         //TESTING HAM AND SPAM
 
         return testResults;
@@ -127,8 +129,8 @@ public class SpamDetector {
                     {
                         if(isWord(word) && !uniqueWords.contains(word))
                         {
-                                uniqueWords.add(word);
-                                map.put(word, map.getOrDefault(word, 0) + 1);
+                            uniqueWords.add(word);
+                            map.put(word, map.getOrDefault(word, 0) + 1);
                         }
                     }
                 }
@@ -202,6 +204,12 @@ public class SpamDetector {
         double PrWiS = (double) spamFilesWithWi / spamFiles;
         double PrWiH = (double) hamFilesWithWi / hamFiles;
 
+        //if the word is not in both ham and spam set probability to zero
+        if (spamFilesWithWi == 0 && hamFilesWithWi == 0)
+        {
+            return 0.0;
+        }
+
         double PrSWi = PrWiS / (PrWiS + PrWiH);
 
         return PrSWi;
@@ -219,20 +227,42 @@ public class SpamDetector {
             String predictedClass = (spamProbability > 0.5) ? "spam" : "ham";
             file.setPredictedClass(predictedClass);
 
-            if (file.getActualClass().equals("spam") && predictedClass.equals("spam")) {
+            if (file.getActualClass().equals("spam") && predictedClass.equals("spam"))
+            {
                 truePositives++;
-            } else if (file.getActualClass().equals("ham") && predictedClass.equals("spam")) {
+            }
+            else if (file.getActualClass().equals("ham") && predictedClass.equals("spam"))
+            {
                 falsePositives++;
-            } else if (file.getActualClass().equals("ham") && predictedClass.equals("ham")) {
+            }
+            else if (file.getActualClass().equals("ham") && predictedClass.equals("ham"))
+            {
                 trueNegatives++;
-            } else if (file.getActualClass().equals("spam") && predictedClass.equals("ham")) {
+            }
+            else if (file.getActualClass().equals("spam") && predictedClass.equals("ham"))
+            {
                 falseNegatives++;
             }
         }
 
         // Calculate accuracy and precision
-        accuracy = (double) (truePositives + trueNegatives) / (truePositives + trueNegatives + falsePositives + falseNegatives);
-        precision = (double) truePositives / (truePositives + falsePositives);
+        if (truePositives + trueNegatives + falsePositives + falseNegatives != 0)
+        {
+            accuracy = (double) (truePositives + trueNegatives) / (truePositives + trueNegatives + falsePositives + falseNegatives);
+        }
+        else
+        {
+            accuracy = 0.0;
+        }
+
+        if (truePositives + falsePositives != 0)
+        {
+            precision = (double) truePositives / (truePositives + falsePositives);
+        }
+        else
+        {
+            precision = 0.0;
+        }
 
         System.out.println("Accuracy: " + accuracy);
         System.out.println("Precision: " + precision);
@@ -254,5 +284,4 @@ public class SpamDetector {
 
         spamDetector.trainAndTest(mainDirectory);
     }
-
 }
