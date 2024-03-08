@@ -54,25 +54,33 @@ public class SpamDetector {
         testResults.addAll(testing(new File(mainDirectory, "\\test\\ham"), "ham"));
         testResults.addAll(testing(new File(mainDirectory, "\\test\\spam"), "spam"));
 
-        HashMap<String,Double> probMapSpam = new HashMap<>();
-        HashMap<String,Double> probMapHam = new HashMap<>();
+        HashMap<String,Double> probMapSpamAndHam = new HashMap<>();
+        ArrayList<String> wordList = new ArrayList<>(); //to avoid looping over same words
 
         //go through files and words in spam and store the word and respective probability in hashmap
         for(String word : trainSpamFreq.keySet())
         {
+
             double probability = calculateProbability(word, "spam") ;
-            probMapSpam.put(word, probability);
+            probMapSpamAndHam.put(word, probability);
+            wordList.add(word);
         }
 
         for(String word : trainHamFreq.keySet())
         {
-            double probability = calculateProbability(word, "ham") ;
-            probMapHam.put(word, probability);
+            if(!wordList.contains(word))
+            {
+                double probability = calculateProbability(word, "ham");
+                probMapSpamAndHam.put(word, probability);
+                wordList.add(word);
+            }
         }
 
-        for(String key : probMapSpam.keySet())
+        for(String key : probMapSpamAndHam.keySet())
         {
-            System.out.println(key + " " + probMapSpam.get(key));
+              System.out.println(key + " " + probMapSpamAndHam.get(key));
+
+
         }
 
         //TESTING HAM AND SPAM
