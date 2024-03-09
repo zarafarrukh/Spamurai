@@ -195,7 +195,7 @@ public class SpamDetector {
                         }
                     }
                 }
-                uniqueWords.clear();
+                //uniqueWords.clear();
             }
         }
         return map;
@@ -266,7 +266,7 @@ public class SpamDetector {
             {truePositives++;}
 
         }
-        for(Double hamProbCounter : spamProb)
+        for(Double hamProbCounter : hamProb)
         {
             if(hamProbCounter > 0.5)
             {falsePositives++;}
@@ -310,7 +310,7 @@ public class SpamDetector {
 
         if (truePositives + falsePositives != 0)
         {
-            System.out.println(truePositives + " / " + truePositives + " + " + falseNegatives);
+            System.out.println(truePositives + " / " + truePositives + " + " + falsePositives);
             precision = (double) truePositives / (truePositives + falsePositives);
         }
         else
