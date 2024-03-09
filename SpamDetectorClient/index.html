@@ -123,7 +123,7 @@
   <script src="https://unpkg.com/scrollreveal"></script>
 
   <script>
-    // Function to fetch accuracy and update the HTML element
+    //function to fetch accuracy
     function fetchAccuracy() {
       fetch('http://localhost:8080/spamDetector-1.0/api/spam/accuracy')
         .then(response => response.json())
@@ -137,7 +137,7 @@
         });
     }
 
-    // Function to fetch precision and update the HTML element
+    // Function to fetch precision
     function fetchPrecision() {
       fetch('http://localhost:8080/spamDetector-1.0/api/spam/precision')
         .then(response => response.json())
@@ -151,7 +151,7 @@
         });
     }
 
-    // Call the functions when the page loads
+    // Calling functions on page load
     document.addEventListener('DOMContentLoaded', function () {
       fetchAccuracy();
       fetchPrecision();
