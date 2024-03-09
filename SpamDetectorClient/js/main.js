@@ -17,7 +17,7 @@ window.onload = function() {
       .then(jsonData => {
 
         let table = document.getElementById('chart');
-  
+
         // Loop through every object in array inserting properties into a new table row
         jsonData.forEach(obj => {
           let row = table.insertRow();
@@ -32,7 +32,7 @@ window.onload = function() {
       });
   }
 
-  
+
   /*toggle icon navbar*/
   let menuIcon = document.querySelector('#menu-icon');
   let navbar = document.querySelector('.navbar');
@@ -49,12 +49,10 @@ window.onload = function() {
   let navLinks = document.querySelectorAll('header nav a');
 
 
-  
-  
+
+
   /*scroll sections  */
-  let sections = document.querySelectorAll('section');
-  let naviLinks = document.querySelectorAll('header nav a');
-  
+
 
   window.onscroll = () => {
     sections.forEach(sec => {
@@ -68,23 +66,22 @@ window.onload = function() {
           links.classList.remove('active');
           document.querySelector('header nav ahref*=' + id + ']').classList.add('active');
         });
-      };
+      }
     });
     /*sticky navbar */
     let header = document.querySelector('header');
 
     header.classList.toggle('sticky', window.scrollY > 100);
-<
 
- 
+
   /*==================== scroll reveal ====================*/
-  
+
     /* remove toggle icon and navbar on navbar link click */
     menuIcon.classList.remove('bx-x');
     navbar.classList.remove('active');
   };
-  
-  
+
+
   /*scrollreveal*/
 
   ScrollReveal({
@@ -99,7 +96,7 @@ window.onload = function() {
   ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
   ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 
-  
+
   /* typed js */
 
   const typed = new Typed('.multiple-text', {
