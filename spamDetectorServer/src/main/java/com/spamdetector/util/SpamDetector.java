@@ -26,13 +26,13 @@ public class SpamDetector
         this.trainSpamFreq = new HashMap<>();
     }
 
-    // Gets testresults
+    // Gets test results
     public ArrayList<TestFile> getTestResults()
     {
         return testResults;
     }
 
-    // Gets precisiom
+    // Gets precision
     public double getPrecision()
     {
         return precision;
@@ -47,7 +47,7 @@ public class SpamDetector
     // *********************************************************************TRAIN AND TEST METHOD**********************************************************************
     /*
      * Initializes testResults to store test results. calculates word frequencies from training data,
-     * test the spamdetector on test data and computes the probabilities as well as estimate the accuracy and precision
+     * test the spam detector on test data and computes the probabilities as well as estimate the accuracy and precision
      */
     public List<TestFile> trainAndTest(File mainDirectory) throws URISyntaxException, IOException
     {
@@ -111,7 +111,7 @@ public class SpamDetector
 
     // *************************************Preparing Data, TRAIN HAM AND SPAM using Calculate Frequency, Extract Words, Check if WOrd**********************************
     /*
-     * Computes word frequency in files within a given directory, proccesses each file,
+     * Computes word frequency in files within a given directory, processes each file,
      * extracting unique words and updating the frequency map accordingly
      */
     public void calculateFrequency(File directory, Map<String, Double> map) throws IOException
@@ -133,8 +133,8 @@ public class SpamDetector
     }
 
     /*
-     * This function extracts valid alphabetic words from a file and cconverts them
-     * to lowercase and stores them in a set. It makes sure the word is valid usingthe
+     * This function extracts valid alphabetic words from a file and converts them
+     * to lowercase and stores them in a set. It makes sure the word is valid using the
      * isWord function and then returns the set of extracted words
      */
     public Set<String> extractWordsFromFile(File file) throws IOException
@@ -172,7 +172,7 @@ public class SpamDetector
     // ***********************************************************************PROBABILITIES***************************************************************************
     /*
      * Determines the probability of each test file being classified as spam,
-     * iterates through the tesst files and calculates their spam probability
+     * iterates through the test files and calculates their spam probability
      * using the calculateProbability function and then adds the results to a list,
      * and then returns the list of spam probabilities
      */
@@ -190,7 +190,7 @@ public class SpamDetector
 
     /*
      * This function determines the chances of a file being spam,
-     * proccesses the file and counts the occurrences of its words,
+     * processes the file and counts the occurrences of its words,
      * then adjusts the probabilities using laplace smoothing,
      * then it compares the probabilities of spam and ham and calculates the total probability of the file being spam
      */
@@ -227,10 +227,10 @@ public class SpamDetector
      */
     public void calculatePrecisionAndAccuracy(List<Double> spamProb, List<Double> hamProb)
     {
-        double truePositives = 0.0;
-        double falsePositives = 0.0;
-        double trueNegatives = 0.0;
-        double falseNegatives = 0.0;
+        int truePositives = 0;
+        int falsePositives = 0;
+        int trueNegatives = 0;
+        int falseNegatives = 0;
 
         for (Double prob : spamProb)
         {
