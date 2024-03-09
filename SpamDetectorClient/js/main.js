@@ -62,9 +62,9 @@ window.onload = function() {
       let id = sec.getAttribute('id');
 
       if(top >= offset && top < offset + height) {
-        naviLinks.forEach(links => {
+        navLinks.forEach(links => {
           links.classList.remove('active');
-          document.querySelector('header nav ahref*=' + id + ']').classList.add('active');
+          document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
         });
       }
     });
