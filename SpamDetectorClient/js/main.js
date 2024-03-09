@@ -52,8 +52,6 @@ window.onload = function() {
 
 
   /*scroll sections  */
-  let sections = document.querySelectorAll('section');
-  let naviLinks = document.querySelectorAll('header nav a');
 
 
   window.onscroll = () => {
@@ -68,7 +66,7 @@ window.onload = function() {
           links.classList.remove('active');
           document.querySelector('header nav ahref*=' + id + ']').classList.add('active');
         });
-      };
+      }
     });
     /*sticky navbar */
     let header = document.querySelector('header');
