@@ -50,7 +50,12 @@ public class SpamResource {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         String json = objectMapper.writeValueAsString(results);
 
-        return Response.ok(results).build();
+        // Returning JSON response
+        return Response.status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Content-Type", "application/json")
+                .entity(json)
+                .build();
 
     }
 
@@ -61,7 +66,12 @@ public class SpamResource {
     {
 //      TODO: return the accuracy of the detector, return in a Response object
         double accuracy = detector.getAccuracy();
-        return Response.ok(accuracy).build();
+        // Returning accuracy as plain text
+        return Response.status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Content-Type", "text/plain")
+                .entity(Double.toString(accuracy))
+                .build();
 
     }
 
@@ -71,8 +81,12 @@ public class SpamResource {
     public Response getPrecision() {
               //TODO: return the precision of the detector, return in a Response object
         double precision = detector.getPrecision();
-        return Response.ok(precision).build();
-
+        // Return precision as plain text
+        return Response.status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Content-Type", "text/plain")
+                .entity(Double.toString(precision))
+                .build();
     }
 
     private List<TestFile> trainAndTest() throws URISyntaxException, IOException {

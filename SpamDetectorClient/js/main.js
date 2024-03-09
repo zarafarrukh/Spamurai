@@ -1,36 +1,37 @@
 // TODO: onload function should retrieve the data needed to populate the UI
 window.onload = function() {
-    // Retrieve accuracy and precision from the server
-    fetch('http://localhost:8080/spamDetector-1.0/api/spam/accuracy')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('accuracy').innerHTML = data;
+  // Retrieve accuracy and precision from the server
+  fetch('http://localhost:8080/spamDetector-1.0/api/spam/accuracy')
+    .then(response => response.json())
+    .then(data => {
+      document.querySelector('.accuracy-value').textContent = data;
+    });
+
+  fetch('http://localhost:8080/spamDetector-1.0/api/spam/precision')
+    .then(response => response.json())
+    .then(data => {
+      document.querySelector('.precision-value').textContent = data;
+    });
+
+  // Fetch data from the /spam endpoint, assuming it returns an array of objects
+  fetch('http://localhost:8080/spamDetector-1.0/api/spam')
+    .then(response => response.json())
+    .then(jsonData => {
+      let table = document.getElementById('chart');
+
+      // Loop through every object in the array and insert properties into a new table row
+      jsonData.forEach(obj => {
+        let row = table.insertRow();
+        let filenameCell = row.insertCell();
+        let spamProbCell = row.insertCell();
+        let actualClassCell = row.insertCell();
+
+        filenameCell.innerHTML = obj.filename;
+        spamProbCell.innerHTML = obj.spamProb;
+        actualClassCell.innerHTML = obj.actualClass;
       });
-
-    fetch('http://localhost:8080/spamDetector-1.0/api/spam/precision')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('precision').innerHTML = data;
-      });
-    fetch('http://localhost:8080/spamDetector-1.0/api/spam/data')
-      .then(response => response.json())
-      .then(jsonData => {
-
-        let table = document.getElementById('chart');
-
-        // Loop through every object in array inserting properties into a new table row
-        jsonData.forEach(obj => {
-          let row = table.insertRow();
-          let filenameCell = row.insertCell();
-          let spamProbCell = row.insertCell();
-          let actualClassCell = row.insertCell();
-
-          filenameCell.innerHTML = obj.filename;
-          spamProbCell.innerHTML = obj.spamProb;
-          actualClassCell.innerHTML = obj.actualClass;
-        });
-      });
-  }
+    });
+}
 
 
   /*toggle icon navbar*/
