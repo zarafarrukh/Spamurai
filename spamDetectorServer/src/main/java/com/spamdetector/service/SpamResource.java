@@ -1,5 +1,8 @@
 package com.spamdetector.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.spamdetector.domain.TestFile;
 import com.spamdetector.util.SpamDetector;
 import jakarta.ws.rs.GET;
@@ -36,11 +39,16 @@ public class SpamResource {
     }
     @GET
     @Produces("application/json")
-    public Response getSpamResults() throws URISyntaxException
-    {
+    public Response getSpamResults() throws URISyntaxException, JsonProcessingException {
 //       TODO: return the test results list of TestFile, return in a Response object
 
         List<TestFile> results = detector.getTestResults();
+        // Get the test results from the SpamDetector object
+
+        // Convert the results to JSON format using Jackson library
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        String json = objectMapper.writeValueAsString(results);
 
         return Response.ok(results).build();
 
@@ -52,8 +60,8 @@ public class SpamResource {
     public Response getAccuracy()
     {
 //      TODO: return the accuracy of the detector, return in a Response object
-       // double accuracy = detector.getAccuracy();
-        return Response.ok().build();
+        double accuracy = detector.getAccuracy();
+        return Response.ok(accuracy).build();
 
     }
 
@@ -62,8 +70,8 @@ public class SpamResource {
     @Produces("application/json")
     public Response getPrecision() {
               //TODO: return the precision of the detector, return in a Response object
-        //double precision = detector.getPrecision();
-        return Response.ok().build();
+        double precision = detector.getPrecision();
+        return Response.ok(precision).build();
 
     }
 
