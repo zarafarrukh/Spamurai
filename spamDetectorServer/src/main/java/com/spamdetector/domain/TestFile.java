@@ -79,4 +79,8 @@ public class TestFile {
     public void setFilename(File value) { this.filename = value; }
 
     public void setActualClass(String value) { this.actualClass = value; }
+
+    public void setSpamProbability(double spamProbability) {
+        this.spamProbability = spamProbability;
+    }
 }

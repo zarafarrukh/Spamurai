@@ -54,6 +54,13 @@ public class SpamDetector {
         List<Double> hamProb = calculateProbabilities(hamTestResults, trainSpamFreq, trainHamFreq);
 
         calculatePrecisionAndAccuracy(spamProb, hamProb);
+        for (TestFile testFile : testResults) {
+            double currentSpamProb = calculateProbability(testFile.getFilename(), trainSpamFreq, trainHamFreq);
+            testFile.setSpamProbability(currentSpamProb);
+
+            // Setting predicted class based on a threshold
+            testFile.setPredictedClass(currentSpamProb > 0.5 ? "spam" : "ham");
+        }
 
         return testResults;
     }

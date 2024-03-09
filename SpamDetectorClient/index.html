@@ -23,7 +23,6 @@
   <meta name="theme-color" content="#fafafa">
 
 </head>
-<body>
   <div class = "row">
     <div id="mySidenav" class="custom-sidebar">
       <div class = "custom-navicon"></div>
@@ -123,14 +122,6 @@
   <!-- scroll reveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
-
   <script>
     // Function to fetch accuracy and update the HTML element
     function fetchAccuracy() {
@@ -167,7 +158,10 @@
     });
   </script>
 
-
-
-</body>
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
 </html>
