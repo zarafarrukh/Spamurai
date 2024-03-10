@@ -3,62 +3,40 @@
   <img src="SpamDetectorClient/img/spamurai.png" alt="Spamurai Logo" width="300">
 </p>
 
-### Project Information
-We've taken the initiative to develop a program designed to sift through and eliminate spam emails. Our spam detector, <b><i>SPAMURAI</i></b>, employs a unigram approach, meticulously analyzing each word within an email to ascertain its spam status. SPAMURAI exhibits a remarkable ability to differentiate between spam & legitimate emails by calculating probabilities based on word frequency, ensuring high accuracy in its assessments. The system has been trained using a diverse dataset encompassing both spam and non-spam emails, and the SpamDetector class has been crafted to facilitate model reading, testing, and training. With a robust set of samples at its disposal, the program excels at sieving out unwanted messages. The algorithm boasts a % accuracy rate and a % precision rate, providing assurance of SPAMURAI's reliability.
-<h3>A product of the combined skills & teamwork of <b>Manal Afzal, Zara Farrukh, Syeda Bisha Fatima & Rabia Chattha</b></h3>
-*** enter image of interface ***
+## Project Information
+We've taken the initiative to develop a program designed to sift through and eliminate spam emails. Our spam detector, <b><i>SPAMURAI</i></b>, employs a unigram approach, meticulously analyzing each word within an email to ascertain its spam status. SPAMURAI exhibits a remarkable ability to differentiate between spam & legitimate emails by calculating probabilities based on word frequency, ensuring high accuracy in its assessments. The system has been trained using a diverse dataset encompassing both spam and non-spam emails, and the SpamDetector class has been crafted to facilitate model reading, testing, and training. With a robust set of samples at its disposal, the program excels at sieving out unwanted messages. The algorithm boasts a 76.6% accuracy rate and an 80.7% precision rate, providing assurance of SPAMURAI's reliability.
+### A product of the combined skills of Manal Afzal, Zara Farrukh, Syeda Bisha Fatima & Rabia Chattha
+<p align="center">
+   <img src="Spamurai_navBar.png" alt="Spamurai Working Interface" width="600">
+  <img src="Spamurai_About.png" alt="Spamurai Working Interface" width="600">
+</p>
 
-### Improvements
-We optimised code by using HashMaps and ArrayLists for storing data values to make searching values occur at O(n) time complexity. 
-During our optimization stage, we also found a way to remove an entire testing function and implement storing testresults(table) from the testing phase inside the testAndTrain method to reduce coding lines and redundncy
-Also generalized a duplicate method.
-Used getters and setters for Accuracy and Precision to avoid multiple local variables
-Used an isWord function to avoid deadling with unique words and symbols
+## Improvements
+We optimized the SpamDetector class by using HashMaps and ArrayLists to efficiently store and retrieve data values, reducing the search complexity to O(n). We simplified the code by eliminating a redundant testing function, integrating test results directly into the trainAndTest method, and reducing code duplication by generating a duplicate method. We simplified variable control by using getters and setters for accuracy and precision, as well as used an isWord function to simplify the handling of unique words and symbols. These optimizations all together enhanced the algorithm's performance, readability, and maintainability.
 
-Given More time:
-We would improve our algorithm using Lapush Smoothing which effieciently handles unseen words
-ALso improve the software to handle the special characters and symbols
+Moving forward we would focus on enhancing our algorithm by implementing Laplace Smoothing, a technique renowned for handling unseen words, thereby enhancing the model's predictive accuracy and precision. We would also enhance our algorithm to handle a diverse range of special characters and symbols to ensure optimal performance across varied input scenarios
 
-### How to run
+## How to run
+### Step-by-Step Instructions:
 
-### Other Resources
+1. Clone the repository: `git clone https://github.com/OntarioTech-CS-program/w24-csci2020u-assignment01-fatima-afzal-chattha-farrukh.git`
+2. Launch intelliJ IDEA ULTIMATE and navigate to project directory 
+3. Configure glassfish and edit run configurations
+   - Set default URL as `http://localhost:8080/spamDetector-1.0/api/spam`
+4. Start GlassFish server and deploy application on selecting ▶
+5. View dashboard with precision, accuracy and data values displayed 
+## Other Resources
+[1] Font: [Google Fonts - Poppins](https://fonts.google.com/specimen/Poppins)
 
+[2] Font Awesome Icons: [Font Awesome](https://fontawesome.com/)
+  - The application uses Font Awesome icons for enhanced visual elements. You can explore and customize the available icons on the Font Awesome website: [Font Awesome Icons](https://fontawesome.com/icons)
 
-### SpamDetectorServer - Endpoints
+[3]  Jakarta EE (Java EE): [Jakarta EE](https://jakarta.ee/)
+   - The application uses Jakarta EE, specifically the `jakarta.ws.rs` package for handling RESTful web services.
 
-**Listing all the test files**
+[4] Jackson Library: [Jackson - JSON Processor](https://github.com/FasterXML/jackson)
+    - The application utilizes the Jackson library for JSON processing, including `com.fasterxml.jackson.annotation`, `com.fasterxml.jackson.core`, and `com.fasterxml.jackson.databind` packages.
+    
+[5] https://en.wikipedia.org/wiki/Bag-of-words_model 
 
-This will return a `application/json` content type.
-- `http://localhost:8080/spamDetector-1.0/api/spam`
-Here's an example illustrating what a sample response might resemble:
-```
-[{"spamProbRounded":"0.00000","file":"00006.654c4ec7c059531accf388a807064363","spamProbability":5.901245803391957E-62,"actualClass":"Ham"},{"spamProbRounded":"0.00000","file":"00007.2e086b13730b68a21ee715db145522b9","spamProbability":2.800348071907053E-12,"actualClass":"Ham"},{"spamProbRounded":"0.00000","file":"00008.6b73027e1e56131377941ff1db17ff12","spamProbability":8.66861037294167E-14,"actualClass":"Ham"},{"spamProbRounded":"0.00000","file":"00009.13c349859b09264fa131872ed4fb6e4e","spamProbability":6.947265471550557E-12,"actualClass":"Ham"},{"spamProbRounded":"0.00000","file":"00010.d1b4dbbad797c5c0537c5a0670c373fd","spamProbability":1.8814467288977145E-7,"actualClass":"Ham"},{"spamProbRounded":"0.00039","file":"00011.bc1aa4dca14300a8eec8b7658e568f29","spamProbability":3.892844289937937E-4,"actualClass":"Ham"}]
-```
-
-**Calculate and get accuracy**
-This will return a `application/json` content type.
-- `http://localhost:8080/spamDetector-1.0/api/spam/accuracy`
-Here's an example illustrating what a sample response might resemble:
-```
-{"val": 0.87564}
-```
-
-**Calculate and get precision**
-This will return a `application/json` content type.
-- `http://localhost:8080/spamDetector-1.0/api/spam/precision`
-Here's an example illustrating what a sample response might resemble:
-```
-{"val": 0.56484}
-```
-### SpamDetectorServer - SpamDetector class
-
-Most of your programming will be in the `SpamDetector` class. This class will be responsible for reading the testing and training data files, training, and testing the model.
-
->1. Feel free to create other helper classes as you see fit.
-> 
->2. You are not expected to get the exact same values as the ones shown in the samples.
-
-### References 
-[1] https://en.wikipedia.org/wiki/Bag-of-words_model 
-
-[2] https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering 
+[6] https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering 

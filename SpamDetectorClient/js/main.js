@@ -25,7 +25,7 @@ window.onload = function() {
     });
 
 }
-
+// iterative function adds data to table
 function add_to_table(jsonData) {
   for (let i = 0; i < jsonData.length; i++) {
     let fileName = jsonData[i].file;
@@ -84,18 +84,3 @@ window.onscroll = () => {
   menuIcon.classList.remove('bx-x');
   navbar.classList.remove('active');
 };
-
-
-/*scrollreveal*/
-
-ScrollReveal({
-  // reset: true,
-  distance: '80px',
-  duration: 2000,
-  delay: 200
-});
-
-ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
-ScrollReveal().reveal('.home-img', { origin: 'bottom' });
-ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
-ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
