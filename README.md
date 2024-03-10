@@ -23,7 +23,7 @@ Given more time, we would further refine our algorithm by implementing Laplace S
 2. Launch intelliJ IDEA ULTIMATE and navigate to project directory 
 3. Configure glassfish and edit run configurations
    - Set default URL as `http://localhost:8080/spamDetector-1.0/api/spam`
-4. Start GlassFish server and deploy application
+4. Start GlassFish server and deploy application on selecting ▶
 5. View dashboard with precision, accuracy and data values displayed 
 ## Other Resources
 [1] Font: [Google Fonts - Poppins](https://fonts.google.com/specimen/Poppins)
