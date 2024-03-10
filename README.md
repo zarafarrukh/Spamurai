@@ -23,12 +23,12 @@ Given more time, we would further refine our algorithm by implementing Laplace S
 ### How to run
 ## Step-by-Step Instructions:
 
-- Clone the repository: `git clone https://github.com/OntarioTech-CS-program/w24-csci2020u-assignment01-fatima-afzal-chattha-farrukh.git`
-- Launch intelliJ IDEA ULTIMATE and navigate to project directory 
-- 
-Follow on-screen instructions for input and classification.
-View precision and accuracy measurements displayed at the end of the process.
-d. Other Resources
+1. Clone the repository: `git clone https://github.com/OntarioTech-CS-program/w24-csci2020u-assignment01-fatima-afzal-chattha-farrukh.git`
+2. Launch intelliJ IDEA ULTIMATE and navigate to project directory 
+3. Configure glassfish and edit run configurations
+   - Set default URL as `http://localhost:8080/spamDetector-1.0/api/spam`
+4. Start GlassFish server and deploy application
+5. View dashboard with precision, accuracy and data values displayed 
 ### Other Resources
 
 
