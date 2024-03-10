@@ -103,7 +103,7 @@ public class SpamResource {
 
 //        TODO: load the main directory "data" here from the Resources folder
         //getting mainDirectory to pass a a parameter
-        URL directory = SpamDetector.class.getResource("/data");
+        URL directory = SpamDetector.class.getClassLoader().getResource("/data");
         //URI uri = directory.getFile();
 //        File mainDirectory = new File(uri);
         File mainDirectory = new File(directory.getFile());
