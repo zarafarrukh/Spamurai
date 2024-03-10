@@ -9,7 +9,7 @@ We've taken the initiative to develop a program designed to sift through and eli
 <p align="center">
    <img src="Spamurai_navBar.png" alt="Spamurai Working Interface" width="300">
   <img src="Spamurai.png" alt="Spamurai Working Interface" width="300">
-  <img src="Spamurai_About.png" alt="Spamurai Working Interface" width="300">
+  <img src="Spamurai_About.png" alt="Spamurai Working Interface" width="150">
 </p>
 
 
