@@ -30,7 +30,14 @@ Given more time, we would further refine our algorithm by implementing Laplace S
 [1] Font: [Google Fonts - Poppins](https://fonts.google.com/specimen/Poppins)
 
 [2] Font Awesome Icons: [Font Awesome](https://fontawesome.com/)
+  - The application uses Font Awesome icons for enhanced visual elements. You can explore and customize the available icons on the Font Awesome website: [Font Awesome Icons](https://fontawesome.com/icons)
 
-[3] https://en.wikipedia.org/wiki/Bag-of-words_model 
+[3]  Jakarta EE (Java EE): [Jakarta EE](https://jakarta.ee/)
+   - The application uses Jakarta EE, specifically the `jakarta.ws.rs` package for handling RESTful web services.
 
-[4] https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering 
+[4] Jackson Library: [Jackson - JSON Processor](https://github.com/FasterXML/jackson)
+    - The application utilizes the Jackson library for JSON processing, including `com.fasterxml.jackson.annotation`, `com.fasterxml.jackson.core`, and `com.fasterxml.jackson.databind` packages.
+    
+[5] https://en.wikipedia.org/wiki/Bag-of-words_model 
+
+[6] https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering 
