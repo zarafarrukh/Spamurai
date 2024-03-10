@@ -80,8 +80,6 @@ public class SpamDetector
 
             // Setting predicted class based on a threshold
             testFile.setPredictedClass(this.currentSpamProb > 0.5 ? "spam" : "ham");
-
-            System.out.println("Filename: " + testFile.getFilename());
         }
 
         return testResults;
@@ -96,6 +94,7 @@ public class SpamDetector
     public List<TestFile> testing(File folder, String category, Map<String, Double> spamFreqMap, Map<String, Double> hamFreMap) throws IOException
     {
         List<TestFile> testResults = new ArrayList<>();
+        List<String> testFileName = new ArrayList<>();
 
         if (!folder.exists())
         {
@@ -115,7 +114,7 @@ public class SpamDetector
                     TestFile testFile = new TestFile(file, this.currentSpamProb, category);
                     testFile.setActualClass(category);
                     testResults.add(testFile);
-                    System.out.println("Filename: " + file.getName());
+                    testFileName.add(file.getName());
                 }
             }
         }
