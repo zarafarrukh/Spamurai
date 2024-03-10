@@ -28,7 +28,6 @@ Given more time, we would further refine our algorithm by implementing Laplace S
 5. View dashboard with precision, accuracy and data values displayed 
 ## Other Resources
 [1] Font: [Google Fonts - Poppins](https://fonts.google.com/specimen/Poppins)
-
-[2] https://en.wikipedia.org/wiki/Bag-of-words_model 
-
-[3] https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering 
+[2] Font Awesome Icons: [Font Awesome](https://fontawesome.com/)
+[3] https://en.wikipedia.org/wiki/Bag-of-words_model 
+[4] https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering 
