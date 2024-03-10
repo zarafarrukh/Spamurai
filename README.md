@@ -12,9 +12,9 @@ We've taken the initiative to develop a program designed to sift through and eli
 </p>
 
 ## Improvements
-We enhanced the code by incorporating HashMaps and ArrayLists for efficient storage of data values, resulting in a time complexity of O(n) for value searches. Additionally, during the optimization stage, we found a way to eliminate an entire testing function and implemented the storage of test results (table) within the testAndTrain method, reducing code lines and redundancy. We also generalized a duplicate method and employed getters and setters for Accuracy and Precision to prevent the use of multiple variables. Furthermore, we introduced an isWord function to handle unique words and symbols, streamlining the code.
+We optimized the SpamDetector class by using HashMaps and ArrayLists to efficiently store and retrieve data values, reducing the search complexity to O(n). We simplified the code by eliminating a redundant testing function, integrating test results directly into the trainAndTest method, and reducing code duplication by generating a duplicate method. We simplified variable control by using getters and setters for accuracy and precision, as well as used an isWord function to simplify the handling of unique words and symbols. These optimizations all together enhanced the algorithm's performance, readability, and maintainability.
 
-Given more time, we would further refine our algorithm by implementing Laplace Smoothing to effectively manage unseen words. Additionally, we aim to enhance the software to accommodate special characters and symbols.
+Moving forward we would focus on enhancing our algorithm by implementing Laplace Smoothing, a technique renowned for handling unseen words, thereby enhancing the model's predictive accuracy and precision. We would also enhance our algorithm to handle a diverse range of special characters and symbols to ensure optimal performance across varied input scenarios
 
 ## How to run
 ### Step-by-Step Instructions:
