@@ -65,7 +65,7 @@ public class SpamResource {
 
     @GET
     @Path("/accuracy")
-    @Produces("text/plain")
+    @Produces("application/json")
     public Response getAccuracy()
     {
 //      TODO: return the accuracy of the detector, return in a Response object
@@ -75,14 +75,14 @@ public class SpamResource {
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
                 .header("Access-Control-Allow-Headers", "Content-Type")
-                .header("Content-Type", "text/plain")
+                .header("Content-Type", "application/json")
                 .entity(Double.toString(accuracy))
                 .build();
     }
 
     @GET
     @Path("/precision")
-    @Produces("text/plain")
+    @Produces("application/json")
     public Response getPrecision() {
         //TODO: return the precision of the detector, return in a Response object
         double precision = this.detector.getPrecision();
@@ -91,7 +91,7 @@ public class SpamResource {
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
                 .header("Access-Control-Allow-Headers", "Content-Type")
-                .header("Content-Type", "text/plain")
+                .header("Content-Type", "application/json")
                 .entity(Double.toString(precision))
                 .build();
     }
