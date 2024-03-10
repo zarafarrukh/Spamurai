@@ -710,7 +710,7 @@ body {
 .table-container {
   background: white;
   position: relative;
-  height: 700px;
+  height: 100%;
   width: 950px;
   padding: 1rem;
   border: 1px solid rgba(30, 60, 140, 1);
