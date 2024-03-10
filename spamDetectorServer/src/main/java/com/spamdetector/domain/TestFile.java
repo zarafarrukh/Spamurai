@@ -14,7 +14,7 @@ public class TestFile {
      * the name of the file this class represents
      */
     @JsonProperty("file")
-    private File filename;
+    private String filename;
 
     /**
      * the probability of this file belonging to the 'spam' category/class
@@ -34,7 +34,7 @@ public class TestFile {
     @JsonProperty("predictedClass")
     private String predictedClass;
 
-    public TestFile(File filename, double spamProbability, String actualClass) {
+    public TestFile(String filename, double spamProbability, String actualClass) {
         this.filename = filename;
         this.spamProbability = spamProbability;
         this.actualClass = actualClass;
@@ -44,7 +44,7 @@ public class TestFile {
     /**
      * @return the name of the file
      */
-    public File getFilename() {
+    public String getFilename() {
         return this.filename;
     }
 
@@ -78,7 +78,7 @@ public class TestFile {
     }
 
     // setter methods for filename, spamProbability, and actualClass
-    public void setFilename(File value) { this.filename = value; }
+    public void setFilename(String value) { this.filename = value; }
 
     public void setActualClass(String value) { this.actualClass = value; }
 
