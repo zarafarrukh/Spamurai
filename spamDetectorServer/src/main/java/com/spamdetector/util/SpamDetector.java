@@ -115,6 +115,7 @@ public class SpamDetector
                     TestFile testFile = new TestFile(file, this.currentSpamProb, category);
                     testFile.setActualClass(category);
                     testResults.add(testFile);
+                    System.out.println("Filename: " + file.getName());
                 }
             }
         }
