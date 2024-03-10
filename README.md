@@ -16,15 +16,9 @@ We've taken the initiative to develop a program designed to sift through and eli
  
 
 ### Improvements
-We optimised code by using HashMaps and ArrayLists for storing data values to make searching values occur at O(n) time complexity. 
-During our optimization stage, we also found a way to remove an entire testing function and implement storing testresults(table) from the testing phase inside the testAndTrain method to reduce coding lines and redundncy
-Also generalized a duplicate method.
-Used getters and setters for Accuracy and Precision to avoid multiple local variables
-Used an isWord function to avoid deadling with unique words and symbols
+We enhanced the code by incorporating HashMaps and ArrayLists for efficient storage of data values, resulting in a time complexity of O(n) for value searches. Additionally, during the optimization stage, we found a way to eliminate an entire testing function and implemented the storage of test results (table) within the testAndTrain method, reducing code lines and redundancy. We also generalized a duplicate method and employed getters and setters for Accuracy and Precision to prevent the use of multiple variables. Furthermore, we introduced an isWord function to handle unique words and symbols, streamlining the code.
 
-Given More time:
-We would improve our algorithm using Lapush Smoothing which effieciently handles unseen words
-ALso improve the software to handle the special characters and symbols
+Given more time, we would further refine our algorithm by implementing Laplace Smoothing to effectively manage unseen words. Additionally, we aim to enhance the software to accommodate special characters and symbols.
 
 ### How to run
 
