@@ -25,7 +25,7 @@ window.onload = function() {
     });
 
 }
-
+// iterative function adds data to table
 function add_to_table(jsonData) {
   for (let i = 0; i < jsonData.length; i++) {
     let fileName = jsonData[i].file;
