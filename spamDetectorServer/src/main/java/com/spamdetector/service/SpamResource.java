@@ -42,7 +42,7 @@ public class SpamResource {
     @GET
     @Path("/files")
     @Produces("application/json")
-    public Response getTestResults() throws URISyntaxException, IOException {
+    public Response getSpamTestResults() throws URISyntaxException, IOException {
         // Return the test results list of TestFile in a Response object
         URL path = SpamDetector.class.getClassLoader().getResource("data");
         if (path == null) {
@@ -50,9 +50,9 @@ public class SpamResource {
         }
 
         File mainDirectory;
-
         try {
-            mainDirectory = new File(path.toURI());
+            URI uri = path.toURI();
+            mainDirectory = new File(uri);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

@@ -7,11 +7,13 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Open Graph metadata -->
   <meta property="og:title" content="">
   <meta property="og:type" content="">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
 
+  <!-- Web App Manifest and Favicon -->
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
@@ -20,15 +22,20 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
+  <!-- Theme color for mobile browsers -->
   <meta name="theme-color" content="#fafafa">
 
 </head>
+
+<!-- IncludeJavaScript -->
 <script src="js/main.js"></script>
 <div class = "row">
+  <!-- Sidebar navigation -->
   <div id="mySidenav" class="custom-sidebar">
     <div class = "custom-navicon"></div>
     <ul class = "custom-menu">
       <li class = "custom-active">
+        <!-- Home link -->
         <a href="index.html" >
           <i class="fas fa-home"></i>
           <span>Home</span>
@@ -36,6 +43,7 @@
       </li>
 
       <li>
+        <!-- About link -->
         <a href="about.html">
           <i class="fas fa-solid fa-address-card"></i>
           <span>About</span>
@@ -45,7 +53,9 @@
     </ul>
   </div>
 
+  <!-- Main grid content -->
   <div class = "grid">
+    <!-- SPAMURAI Dashboard title and logo -->
     <div class = "dashboard-title-container">
       <img src="img/spamurai.png" alt="Logo" class="dashboard-logo">
       <div class = "dashboard-row">
@@ -61,6 +71,7 @@
       </div>
     </div>
 
+    <!-- Performance section -->
     <div class ="dashboard-title-container"><div class = "performance-container">
       <div class = "performance-title"><h2>Performance of the Model</h2></div>
 
@@ -68,12 +79,14 @@
         <div class = "grid">
           <label>
             <input class = "accuracy-text" type = "text" placeholder = "Accuracy:"/>
+            <!--Calculated accuracy-->
             <span id="accuracy"></span>
           </label>
         </div>
         <div class = "grid">
           <label>
             <input class = "precision-text" type = "text" placeholder = "Precision:"/>
+            <!--Calculated precision-->
             <span id="precision"></span>
           </label>
         </div>
@@ -81,6 +94,7 @@
       </div>
     </div></div>
 
+    <!-- Data Table section -->
     <div class = "table-container" >
       <h3 class = "table-title"></h3>
       <div class = "table-data">
@@ -94,6 +108,7 @@
           </tr>
           </thead>
           <tbody class ="scroll">
+          <!--Spam/Ham data-->
           </tbody>
         </table>
       </div>
@@ -103,9 +118,6 @@
 </div>
 
 <!--application content here -->
-
-<!-- scroll reveal -->
-<script src="https://unpkg.com/scrollreveal"></script>
 
 <script src="js/main.js"></script>
 <script src="js/vendor/modernizr-3.11.2.min.js"></script>
