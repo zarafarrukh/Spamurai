@@ -63,8 +63,8 @@ public class SpamDetector
         calculateFrequency(hamDirectory, trainHamFreq);
         calculateFrequency(ham2Directory, trainHamFreq);
 
-        List<TestFile> hamTestResults = testing(new File(mainDirectory, "test/ham"), "ham");
-        List<TestFile> spamTestResults = testing(new File(mainDirectory, "test/spam"), "spam");
+        List<TestFile> hamTestResults = testing(new File(mainDirectory, "test/ham"), "ham", trainSpamFreq, trainHamFreq);
+        List<TestFile> spamTestResults = testing(new File(mainDirectory, "test/spam"), "spam", trainSpamFreq, trainHamFreq);
 
         testResults.addAll(hamTestResults);
         testResults.addAll(spamTestResults);
@@ -93,7 +93,7 @@ public class SpamDetector
      *  generates TestFile objects for each file in the directory with the indicated category,
      * returns thee the list of TestFile objects that show the test results
      */
-    public List<TestFile> testing(File folder, String category) throws IOException
+    public List<TestFile> testing(File folder, String category, Map<String, Double> spamFreqMap, Map<String, Double> hamFreMap) throws IOException
     {
         List<TestFile> testResults = new ArrayList<>();
 
@@ -111,6 +111,7 @@ public class SpamDetector
             {
                 if (file.isFile())
                 {
+                    double spamProb = calculateProbability(file, trainSpamFreq, trainHamFreq);
                     TestFile testFile = new TestFile(file, this.currentSpamProb, category);
                     testFile.setActualClass(category);
                     testResults.add(testFile);
