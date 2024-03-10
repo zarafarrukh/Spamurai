@@ -38,6 +38,37 @@ public class SpamResource {
 
 
     }
+
+    @GET
+    @Path("/files")
+    @Produces("application/json")
+    public Response getTestResults() throws URISyntaxException, IOException {
+        // Return the test results list of TestFile in a Response object
+        URL path = SpamDetector.class.getClassLoader().getResource("data");
+        if (path == null) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+
+        File mainDirectory;
+
+        try {
+            mainDirectory = new File(path.toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        List<TestFile> testResults = this.detector.trainAndTest(mainDirectory);
+
+        // Convert test results to JSON
+        String jsonData;
+        try {
+            jsonData = convertToJson(testResults);
+        } catch (JsonProcessingException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return createResponse(jsonData, "application/json");
+    }
     @GET
     @Path("/data")
     @Produces("application/json")
@@ -96,7 +127,7 @@ public class SpamResource {
                 .build();
     }
 
-    private List<TestFile> trainAndTest() throws URISyntaxException, IOException {
+    public List<TestFile> trainAndTest() throws URISyntaxException, IOException {
         if (this.detector==null){
             this.detector = new SpamDetector();
         }
@@ -110,5 +141,18 @@ public class SpamResource {
         this.detector.trainAndTest(mainDirectory);
 
         return this.detector.getTestResults();
+    }
+
+    private Response createResponse(String data, String contentType) {
+        return Response.status(Response.Status.OK)
+                .entity(data)
+                .header("Access-Control-Allow-Origin", "http://localhost:63342")
+                .header("Content-Type", contentType)
+                .build();
+    }
+
+    private String convertToJson(List<TestFile> testResults) throws JsonProcessingException {
+        // Implement your logic to convert List<TestFile> to JSON format
+        return new ObjectMapper().writeValueAsString(testResults);
     }
 }

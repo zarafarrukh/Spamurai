@@ -14,26 +14,37 @@ window.onload = function() {
     });
 
   // Fetch data from the /spam endpoint, assuming it returns an array of objects
-  fetch('http://localhost:8080/spamDetector-1.0/api/spam/data')
+  fetch('http://localhost:8080/spamDetector-1.0/api/spam/files')
     .then(response => response.json())
     .then(jsonData => {
       let table = document.getElementById('chart');
+      console.log("data",jsonData);
+      add_to_table(jsonData);
 
-      // Loop through every object in the array and insert properties into a new table row
-      jsonData.forEach(obj => {
-        let row = table.insertRow();
-        let filenameCell = row.insertCell();
-        let spamProbabilityCell = row.insertCell();
-        let actualClassCell = row.insertCell();
 
-        filenameCell.innerHTML = obj.filename;
-        spamProbabilityCell.innerHTML = obj.spamProbability;
-        actualClassCell.innerHTML = obj.actualClass;
-      });
     });
+
 }
 
+function add_to_table(jsonData) {
+  for (let i = 0; i < jsonData.length; i++) {
+    let fileName = jsonData[i].file;
+    let spamProb = jsonData[i].spamProbability;
+    let actualClass = jsonData[i].actualClass;
 
+    let tableRef = document.querySelector("#chart");
+    let newRowRef = tableRef.insertRow(-1);
+    newRowRef.className = "entry entry-enter"
+
+    let dataRef1 = newRowRef.insertCell(0);
+    let dataRef2 = newRowRef.insertCell(1);
+    let dataRef3 = newRowRef.insertCell(2);
+
+    dataRef1.innerText = fileName;
+    dataRef2.innerText = spamProb;
+    dataRef3.innerText = actualClass;
+  }
+}
 /*toggle icon navbar*/
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');

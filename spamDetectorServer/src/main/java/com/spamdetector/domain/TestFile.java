@@ -39,6 +39,7 @@ public class TestFile {
         this.spamProbability = spamProbability;
         this.actualClass = actualClass;
         this.predictedClass = null;
+
     }
 
     /**

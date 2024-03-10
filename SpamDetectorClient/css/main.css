@@ -58,7 +58,7 @@ html {
   padding: 8px;
 }
 #chart th {
-  background-color: #f2f2f2;
+  background-color: #7397e8;
   font-weight: bold;
   border: 1px solid #ddd;
   padding: 8px;
@@ -589,13 +589,27 @@ body {
   display: flex;
 }
 
+.model-container{
+  background:white;
+  position:relative;
+  height: 180px;
+  width: 70%;
+  padding: 1rem;
+  border: 1px solid rgba(30, 60, 140, 1);
+  gap:5px;
+  margin:10px;
+  border-radius:10px;
+  align-items: center;
+  display: flex;
+}
+
 .dashboard-title-container{
   background:white;
   position:relative;
   height: 180px;
-  width: 100%;
+  width: 51%;
   padding: 1rem;
-  border: 1px solid rgba(30, 60, 140, 1);
+  border: 1px solid rgb(115, 151, 232);
   gap:5px;
   margin:10px;
   border-radius:10px;
@@ -633,7 +647,7 @@ body {
   height: 150px;
   width: 1800px;
   padding: 1rem;
-  border: 1px solid rgba(30, 60, 140, 1);
+  border: 1px solid rgb(115, 151, 232);
   gap:5px;
   margin:10px;
   border-radius:10px;
@@ -647,14 +661,13 @@ body {
 }
 
 .accuracy-text{
-  font-size:12px;
+  font-size:16px;
   color:black;
 }
 
 .precision-text{
-  font-size:12px;
+  font-size:16px;
   color:black;
-
 }
 
 .precision-value, .accuracy-value {
@@ -698,7 +711,7 @@ body {
   background: white;
   position: relative;
   height: 700px;
-  width: 1800px;
+  width: 950px;
   padding: 1rem;
   border: 1px solid rgba(30, 60, 140, 1);
   gap:5px;
