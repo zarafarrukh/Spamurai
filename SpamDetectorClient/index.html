@@ -23,140 +23,100 @@
   <meta name="theme-color" content="#fafafa">
 
 </head>
-  <div class = "row">
-    <div id="mySidenav" class="custom-sidebar">
-      <div class = "custom-navicon"></div>
-      <ul class = "custom-menu">
-        <li class = "custom-active">
-          <a href="index.html" >
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-          </a>
-        </li>
+<script src="js/main.js"></script>
+<div class = "row">
+  <div id="mySidenav" class="custom-sidebar">
+    <div class = "custom-navicon"></div>
+    <ul class = "custom-menu">
+      <li class = "custom-active">
+        <a href="index.html" >
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+      </li>
 
-        <li>
-          <a href="about.html">
-            <i class="fas fa-solid fa-address-card"></i>
-            <span>About</span>
-          </a>
-        </li>
+      <li>
+        <a href="about.html">
+          <i class="fas fa-solid fa-address-card"></i>
+          <span>About</span>
+        </a>
+      </li>
 
-      </ul>
-    </div>
+    </ul>
+  </div>
 
-    <div class = "grid">
+  <div class = "grid">
     <div class = "dashboard-title-container">
       <img src="img/spamurai.png" alt="Logo" class="dashboard-logo">
       <div class = "dashboard-row">
-      <div class="dashboard-title">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 text-center">
-              <h3 class="animate-character">Spamurai Dashboard</h3>
+        <div class="dashboard-title">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h3 class="animate-character">Spamurai Dashboard</h3>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class = "search-container">
-        <i class = "fa solid fa-search"></i>
-        <label>
-          <input class = "search-text" type = "text" placeholder = "Search"/>
-        </label>
-      </div>
-      </div>
-    </div>
-
-      <div class = "performance-container">
-        <div class = "performance-title"><h2>Performance of the Model</h2></div>
-
-        <div class = "row">
-          <div class = "grid">
-        <label>
-          <input class = "accuracy-text" type = "text" placeholder = "Accuracy:"/>
-          <span class="accuracy-value">Loading...</span>
-        </label>
-          </div>
-          <div class = "grid">
-        <label>
-          <input class = "precision-text" type = "text" placeholder = "Precision:"/>
-          <span class="precision-value">Loading...</span>
-        </label>
-          </div>
-
+        <div class = "search-container">
+          <i class = "fa solid fa-search"></i>
+          <label>
+            <input class = "search-text" type = "text" placeholder = "Search"/>
+          </label>
         </div>
       </div>
+    </div>
 
-  <div class = "table-container" >
-    <h3 class = "table-title"></h3>
-    <div class = "table-data">
-      <div class="table-heading"><h2>Spam Detection Data</h2></div>
-      <table>
-        <thead>
+    <div class = "performance-container">
+      <div class = "performance-title"><h2>Performance of the Model</h2></div>
+
+      <div class = "row">
+        <div class = "grid">
+          <label>
+            <input class = "accuracy-text" type = "text" placeholder = "Accuracy:"/>
+            <span id="accuracy"></span>
+          </label>
+        </div>
+        <div class = "grid">
+          <label>
+            <input class = "precision-text" type = "text" placeholder = "Precision:"/>
+            <span id="precision"></span>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <div class = "table-container" >
+      <h3 class = "table-title"></h3>
+      <div class = "table-data">
+        <div class="table-heading"><h2>Spam Detection Data</h2></div>
+        <table id ="chart">
+          <thead>
           <tr>
             <th>File</th>
-            <th>Spam Probability</th>
+            <th>Spam Probability (%)</th>
             <th>Class</th>
           </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>Data 1</td>
-          <td>Data 2</td>
-          <td>Data 3</td>
-        </tr>
-        </tbody>
-      </table>
-  </div>
+          </thead>
+          <tbody class ="scroll">
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>
-  </div>
+</div>
 
-  <!--application content here -->
-  <script src="js/main.js"></script>
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <!-- typed js -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <!-- scroll reveal -->
-  <script src="https://unpkg.com/scrollreveal"></script>
+<!--application content here -->
 
-  <script>
-    //function to fetch accuracy
-    function fetchAccuracy() {
-      fetch('http://localhost:8080/spamDetector-1.0/api/spam/accuracy')
-        .then(response => response.json())
-        .then(data => {
-          console.log('Accuracy data:', data); // Log the data for debugging
-          document.querySelector('.accuracy-value').textContent = data;
-        })
-        .catch(error => {
-          console.error('Error fetching accuracy:', error);
-          document.querySelector('.accuracy-value').textContent = 'Error';
-        });
-    }
+<!-- scroll reveal -->
+<script src="https://unpkg.com/scrollreveal"></script>
 
-    // Function to fetch precision
-    function fetchPrecision() {
-      fetch('http://localhost:8080/spamDetector-1.0/api/spam/precision')
-        .then(response => response.json())
-        .then(data => {
-          console.log('Precision data:', data); // Log the data for debugging
-          document.querySelector('.precision-value').textContent = data;
-        })
-        .catch(error => {
-          console.error('Error fetching precision:', error);
-          document.querySelector('.precision-value').textContent = 'Error';
-        });
-    }
-
-    // Calling functions on page load
-    document.addEventListener('DOMContentLoaded', function () {
-      fetchAccuracy();
-      fetchPrecision();
-    });
-  </script>
+<script src="js/main.js"></script>
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
 
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>

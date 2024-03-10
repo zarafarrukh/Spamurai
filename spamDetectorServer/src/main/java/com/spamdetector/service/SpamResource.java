@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.logging.Logger;
 
+
 @Path("/spam")
 public class SpamResource {
 
@@ -38,11 +39,12 @@ public class SpamResource {
 
     }
     @GET
+    @Path("/data")
     @Produces("application/json")
     public Response getSpamResults() throws URISyntaxException, JsonProcessingException {
 //       TODO: return the test results list of TestFile, return in a Response object
 
-        List<TestFile> results = detector.getTestResults();
+        List<TestFile> results = this.detector.getTestResults();
         // Get the test results from the SpamDetector object
 
         // Convert the results to JSON format using Jackson library
@@ -50,9 +52,11 @@ public class SpamResource {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         String json = objectMapper.writeValueAsString(results);
 
-        // Returning JSON response
+        // Returning JSON response with CORS headers
         return Response.status(200)
                 .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type")
                 .header("Content-Type", "application/json")
                 .entity(json)
                 .build();
@@ -61,29 +65,32 @@ public class SpamResource {
 
     @GET
     @Path("/accuracy")
-    @Produces("application/json")
+    @Produces("text/plain")
     public Response getAccuracy()
     {
 //      TODO: return the accuracy of the detector, return in a Response object
-        double accuracy = detector.getAccuracy();
-        // Returning accuracy as plain text
+        double accuracy = this.detector.getAccuracy();
+        // Returning accuracy as plain text with CORS headers
         return Response.status(200)
                 .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type")
                 .header("Content-Type", "text/plain")
                 .entity(Double.toString(accuracy))
                 .build();
-
     }
 
     @GET
     @Path("/precision")
-    @Produces("application/json")
+    @Produces("text/plain")
     public Response getPrecision() {
-              //TODO: return the precision of the detector, return in a Response object
-        double precision = detector.getPrecision();
-        // Return precision as plain text
+        //TODO: return the precision of the detector, return in a Response object
+        double precision = this.detector.getPrecision();
+        // Return precision as plain text with CORS headers
         return Response.status(200)
                 .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type")
                 .header("Content-Type", "text/plain")
                 .entity(Double.toString(precision))
                 .build();
@@ -96,10 +103,12 @@ public class SpamResource {
 
 //        TODO: load the main directory "data" here from the Resources folder
         //getting mainDirectory to pass a a parameter
-//        URL directory = SpamDetector.class.getClassLoader().getResource("/data").getFile();
-//        URI uri = directory.toURI();
+        URL directory = SpamDetector.class.getResource("/data");
+        //URI uri = directory.getFile();
 //        File mainDirectory = new File(uri);
-        File mainDirectory = new File("SpamDetector.class.getClassLoader().getResource(\"/data\").getFile()");
-        return this.detector.trainAndTest(mainDirectory);
+        File mainDirectory = new File(directory.getFile());
+        this.detector.trainAndTest(mainDirectory);
+
+        return this.detector.getTestResults();
     }
 }

@@ -44,6 +44,8 @@ public class SpamDetector
         return accuracy;
     }
 
+    private double currentSpamProb = 0.0;
+
     // *********************************************************************TRAIN AND TEST METHOD**********************************************************************
     /*
      * Initializes testResults to store test results. calculates word frequencies from training data,
@@ -72,17 +74,17 @@ public class SpamDetector
 
         calculatePrecisionAndAccuracy(spamProb, hamProb);
         for (TestFile testFile : testResults) {
-            double currentSpamProb = calculateProbability(testFile.getFilename(), trainSpamFreq, trainHamFreq);
-            testFile.setSpamProbability(currentSpamProb);
+            this.currentSpamProb = calculateProbability(testFile.getFilename(), trainSpamFreq, trainHamFreq);
+            testFile.setSpamProbability(this.currentSpamProb);
 
             // Setting predicted class based on a threshold
-            testFile.setPredictedClass(currentSpamProb > 0.5 ? "spam" : "ham");
+            testFile.setPredictedClass(this.currentSpamProb > 0.5 ? "spam" : "ham");
         }
 
         return testResults;
     }
 
-    // TESTING METHOD 
+    // TESTING METHOD
     /*
      * Tests the spam detector on test data files by categorizing them based on the category provided,
      *  generates TestFile objects for each file in the directory with the indicated category,
@@ -106,7 +108,7 @@ public class SpamDetector
             {
                 if (file.isFile())
                 {
-                    TestFile testFile = new TestFile(file, category);
+                    TestFile testFile = new TestFile(file, this.currentSpamProb, category);
                     testFile.setActualClass(category);
                     testResults.add(testFile);
                 }
