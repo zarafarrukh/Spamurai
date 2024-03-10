@@ -677,34 +677,6 @@ body {
   margin: 1px;
 }
 
-/* ******* SEARCH ********* */
-
-.search-container {
-  border-radius: 15px;
-  display: flex;
-  color: rgba(113,99,186,255);
-  align-items: center;
-  gap: 5px;
-  padding: 4px 12px;
-  border: 1px solid black;
-  margin-top: 20px;
-}
-
-.search-box input {
-  background: transparent;
-  padding: 10px;
-}
-
-.search-box i {
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.5s ease-out;
-}
-
-.search-box i:hover{
-  transform: scale(1.2);
-}
-
 /* ******* TABLE ********* */
 
 .table-container {
