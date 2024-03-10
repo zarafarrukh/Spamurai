@@ -2,10 +2,27 @@
 <p align="center">
   <img src="SpamDetectorClient/img/spamurai.png" alt="Spamurai Logo" width="300">
 </p>
+
+### Project Information
 We've taken the initiative to develop a program designed to sift through and eliminate spam emails. Our spam detector, <b><i>SPAMURAI</i></b>, employs a unigram approach, meticulously analyzing each word within an email to ascertain its spam status. SPAMURAI exhibits a remarkable ability to differentiate between spam & legitimate emails by calculating probabilities based on word frequency, ensuring high accuracy in its assessments. The system has been trained using a diverse dataset encompassing both spam and non-spam emails, and the SpamDetector class has been crafted to facilitate model reading, testing, and training. With a robust set of samples at its disposal, the program excels at sieving out unwanted messages. The algorithm boasts a % accuracy rate and a % precision rate, providing assurance of SPAMURAI's reliability.
 <h3>A product of the combined skills & teamwork of <b>Manal Afzal, Zara Farrukh, Syeda Bisha Fatima & Rabia Chattha</b></h3>
+*** enter image of interface ***
 
-...IN CONSTRUCTION
+### Improvements
+We optimised code by using HashMaps and ArrayLists for storing data values to make searching values occur at O(n) time complexity. 
+During our optimization stage, we also found a way to remove an entire testing function and implement storing testresults(table) from the testing phase inside the testAndTrain method to reduce coding lines and redundncy
+Also generalized a duplicate method.
+Used getters and setters for Accuracy and Precision to avoid multiple local variables
+Used an isWord function to avoid deadling with unique words and symbols
+
+Given More time:
+We would improve our algorithm using Lapush Smoothing which effieciently handles unseen words
+ALso improve the software to handle the special characters and symbols
+
+### How to run
+
+### Other Resources
+
 
 ### SpamDetectorServer - Endpoints
 
