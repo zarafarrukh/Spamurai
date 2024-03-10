@@ -20,8 +20,8 @@ We enhanced the code by incorporating HashMaps and ArrayLists for efficient stor
 
 Given more time, we would further refine our algorithm by implementing Laplace Smoothing to effectively manage unseen words. Additionally, we aim to enhance the software to accommodate special characters and symbols.
 
-### How to run
-## Step-by-Step Instructions:
+## How to run
+### Step-by-Step Instructions:
 
 1. Clone the repository: `git clone https://github.com/OntarioTech-CS-program/w24-csci2020u-assignment01-fatima-afzal-chattha-farrukh.git`
 2. Launch intelliJ IDEA ULTIMATE and navigate to project directory 
