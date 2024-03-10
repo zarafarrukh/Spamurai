@@ -27,9 +27,8 @@ Given more time, we would further refine our algorithm by implementing Laplace S
 4. Start GlassFish server and deploy application
 5. View dashboard with precision, accuracy and data values displayed 
 ## Other Resources
+[1] Font: [Google Fonts - Poppins](https://fonts.google.com/specimen/Poppins)
 
+[2] https://en.wikipedia.org/wiki/Bag-of-words_model 
 
-### References 
-[1] https://en.wikipedia.org/wiki/Bag-of-words_model 
-
-[2] https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering 
+[3] https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering 
