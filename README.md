@@ -9,6 +9,9 @@ We've taken the initiative to develop a program designed to sift through and eli
 <p align="center">
   <img src="Spamurai.png" alt="Spamurai Working Interface" width="300">
 </p>
+ <img src="Spamurai_navBar.png" alt="Spamurai Working Interface" width="300">
+
+ <img src="Spamurai_About.png" alt="Spamurai Working Interface" width="300">
 
 ### Improvements
 We optimised code by using HashMaps and ArrayLists for storing data values to make searching values occur at O(n) time complexity. 
