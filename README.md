@@ -3,7 +3,7 @@
   <img src="SpamDetectorClient/img/spamurai.png" alt="Spamurai Logo" width="300">
 </p>
 
-### Project Information
+## Project Information
 We've taken the initiative to develop a program designed to sift through and eliminate spam emails. Our spam detector, <b><i>SPAMURAI</i></b>, employs a unigram approach, meticulously analyzing each word within an email to ascertain its spam status. SPAMURAI exhibits a remarkable ability to differentiate between spam & legitimate emails by calculating probabilities based on word frequency, ensuring high accuracy in its assessments. The system has been trained using a diverse dataset encompassing both spam and non-spam emails, and the SpamDetector class has been crafted to facilitate model reading, testing, and training. With a robust set of samples at its disposal, the program excels at sieving out unwanted messages. The algorithm boasts a % accuracy rate and a % precision rate, providing assurance of SPAMURAI's reliability.
 <h3>A product of the combined skills & teamwork of <b>Manal Afzal, Zara Farrukh, Syeda Bisha Fatima & Rabia Chattha</b></h3>
 <p align="center">
@@ -12,10 +12,7 @@ We've taken the initiative to develop a program designed to sift through and eli
   <img src="Spamurai_About.png" alt="Spamurai Working Interface" width="500">
 </p>
 
-
- 
-
-### Improvements
+## Improvements
 We enhanced the code by incorporating HashMaps and ArrayLists for efficient storage of data values, resulting in a time complexity of O(n) for value searches. Additionally, during the optimization stage, we found a way to eliminate an entire testing function and implemented the storage of test results (table) within the testAndTrain method, reducing code lines and redundancy. We also generalized a duplicate method and employed getters and setters for Accuracy and Precision to prevent the use of multiple variables. Furthermore, we introduced an isWord function to handle unique words and symbols, streamlining the code.
 
 Given more time, we would further refine our algorithm by implementing Laplace Smoothing to effectively manage unseen words. Additionally, we aim to enhance the software to accommodate special characters and symbols.
