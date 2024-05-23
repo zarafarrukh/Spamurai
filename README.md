@@ -1,4 +1,4 @@
-# Spam Detector SPAMURAI - Assignment 01
+# Spamurai - Spam Detector
 <p align="center">
   <img src="SpamDetectorClient/img/spamurai.png" alt="Spamurai Logo" width="300">
 </p>
