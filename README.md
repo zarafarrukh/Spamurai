@@ -30,7 +30,9 @@ Moving forward we would focus on enhancing our algorithm by implementing Laplace
 
 For a more detailed step-by-step instruction on how to run the glassfish server, watch this video:
 
-[Spamurai.mp4](https://drive.google.com/file/d/15smaeTVAwavbi1pRPwntUZDA-OMa6jvt/view?usp=sharing)
+<a href="https://drive.google.com/file/d/15smaeTVAwavbi1pRPwntUZDA-OMa6jvt/view?usp=sharing">
+  <img src="HowToRun_Snippet.png" alt="Watch the video" width="500">
+</a>
 
 ## Other Resources
 [1] Font: [Google Fonts - Poppins](https://fonts.google.com/specimen/Poppins)
